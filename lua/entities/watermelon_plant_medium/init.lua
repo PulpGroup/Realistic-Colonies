@@ -23,15 +23,13 @@
 
       
     function ENT:Initialize()
-		
 		self:SetModel("models/props_foliage/tree_deciduous_03b.mdl")
-		self:SetSolid( SOLID_VPHYSICS ) // Toolbox 
+		self:SetSolid( SOLID_VPHYSICS ) // Toolbox
 		self.lastmelon_plant = math.Round(CurTime())
 		self.lastmelon = math.Round(CurTime())
 		self:SetNWBool("RC",true)
 		self.age=0
 		self.nextmelon=GetConVarNumber("rc_watermelonbm_time")
-		
     end
      
      function ENT:OnTakeDamage(dmg)

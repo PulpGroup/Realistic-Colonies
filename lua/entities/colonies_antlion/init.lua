@@ -31,7 +31,6 @@
 		--self.npc:SetModelScale(Vector(0.5, 0.5, 0.5));
 		
 		--set color and value
-		self.npc:SetColor( Color(220,0,200,255) )
 		self.name = coloniesnames[math.random(1,#coloniesnames)]
 		self.nextegg = GetConVarNumber("rc_antlion_maturetime") + GetConVarNumber("rc_antlion_pregtime")
 		self.npc.melon=nil
@@ -55,8 +54,9 @@
 		end
 		
 		if(SERVER) then
-			self.npc:SetNWInt("HChealth", self.npc:Health() );
 			self.npc:SetModelScale(0.5,0);
+			self.npc:SetHealth(30);
+			self.npc:SetNWInt("HChealth", self.npc:Health() );
 		end
 	 
     end
@@ -72,7 +72,7 @@
 	//-------------------------------------------------------*/
 	function ENT:OnRemove()
 		-- kill the npc
-		if self.npc:IsValid() == true then
+		if IsValid(self.npc) == true then
 			self.npc:Remove(0)
 		end
 	end
@@ -86,8 +86,12 @@
 		self.hunger = self.hunger + GetConVarNumber("rc_antlion_hunger")*GetConVarNumber("rc_time")*GetConVarNumber("rc_speed")
 		self.npc:SetNWInt("HChunger",self.hunger)
 		
-		if(SERVER and self.npc != nil and self.npc:IsValid() ) then
+		if(SERVER and IsValid(self.npc) ) then
 			self.npc:SetNWInt("HChealth", self.npc:Health() );
+			if self.age < GetConVarNumber("rc_antlion_maturetime") then
+				local Scale =  0.5 + (self.age/GetConVarNumber("rc_antlion_maturetime"))*(0.5)
+				self.npc:SetModelScale(Scale,0);
+			end
 		end
 	
 		if GetConVarNumber("rc_remove")==1 then 
@@ -96,7 +100,7 @@
 
 
 		--Is the antlion still alive?
-		if self.npc:IsValid() == false then
+		if IsValid(self.npc) == false then
 			local meat = ents.Create("colonies_ameat")
 			meat:SetPos(self:GetPos()+Vector(0,0,10010))
 			meat:Spawn()
@@ -123,7 +127,6 @@
 
 		if self.age > GetConVarNumber("rc_antlion_maturetime") and self.npc:GetNWBool("isSelected")==false  then
 			self.npc:SetColor( Color(255,255,255,255) )
-			self.npc:SetModelScale(1,0);
 		end
 
 		if self.age > self.nextegg and antlionCount() <= GetConVarNumber("rc_antlion_max") then

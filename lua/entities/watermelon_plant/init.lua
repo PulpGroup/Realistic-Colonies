@@ -18,7 +18,6 @@
 
       
     function ENT:Initialize()
-		
 		self:SetModel("models/props_foliage/oak_tree01.mdl")
 		self:SetSolid( SOLID_VPHYSICS ) // Toolbox 
 		self.lastmelon_plant = math.Round(CurTime())

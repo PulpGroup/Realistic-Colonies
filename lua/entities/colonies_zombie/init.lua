@@ -34,7 +34,6 @@
 		self.npc:SetOwner(self.Owner)
 		
 		--set color and value
-		self.npc:SetColor( Color(220,0,200,255) )
 		self.name = coloniesnames[math.random(1,#coloniesnames)]
 		self.nextegg = GetConVarNumber("rc_zombie_maturetime") + GetConVarNumber("rc_zombie_pregtime")
 		self.npc.melon=nil
@@ -58,6 +57,8 @@
 		end
 		
 		if(SERVER) then
+			self.npc:SetModelScale(0.5,0);
+			self.npc:SetHealth(50);
 			self.npc:SetNWInt("HChealth", self.npc:Health() );
 		end
 		
@@ -74,7 +75,7 @@
 	//-------------------------------------------------------*/
 	function ENT:OnRemove()
 		-- kill the npc
-		if self.npc:IsValid() == true then
+		if IsValid(self.npc) == true then
 			self.npc:Remove(0)
 		end
 	end
@@ -88,8 +89,12 @@
 		self.hunger = self.hunger + GetConVarNumber("rc_headcrab_hunger")*GetConVarNumber("rc_time")*GetConVarNumber("rc_speed")
 		self.npc:SetNWInt("HChunger",self.hunger)
 	
-		if(SERVER and self.npc != nil and self.npc:IsValid() ) then
+		if (SERVER and IsValid(self.npc) ) then
 			self.npc:SetNWInt("HChealth", self.npc:Health() );
+			if self.age < GetConVarNumber("rc_zombie_maturetime") then
+				local Scale =  0.5 + (self.age/GetConVarNumber("rc_zombie_maturetime"))*(0.5)
+				self.npc:SetModelScale(Scale,0);
+			end
 		end
 	
 		if GetConVarNumber("rc_remove")==1 then 
@@ -97,7 +102,7 @@
 		end
 
 		--Is the headrab still alive?
-		if self.npc:IsValid() == false then
+		if IsValid(self.npc) == false then
 			local meat = ents.Create("colonies_hmeat")
 			meat:SetPos(self:GetPos()+Vector(0,0,10010))
 			meat:Spawn()
