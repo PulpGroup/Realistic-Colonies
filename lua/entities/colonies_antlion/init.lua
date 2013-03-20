@@ -32,10 +32,14 @@
 		
 		--set color and value
 		self.name = coloniesnames[math.random(1,#coloniesnames)]
-		self.nextegg = GetConVarNumber("rc_antlion_maturetime") + GetConVarNumber("rc_antlion_pregtime")
+		self.nextegg = GetConVarNumber("rc_antlion_maturetime") + GetConVarNumber("rc_antlion_pregtime") + math.Round(math.random(-2,2))
 		self.npc.melon=nil
 		self.hunger = 0
 		self.age=0
+		
+		self.maxhp = 30
+		self.hpregen = 1
+		
 		self.npc:SetNWString("HCname",self.name)
 		self.npc:SetNWBool("HC",true)
 		self.npc:SetNWBool("RC",true)
@@ -55,7 +59,7 @@
 		
 		if(SERVER) then
 			self.npc:SetModelScale(0.5,0);
-			self.npc:SetHealth(30);
+			self.npc:SetHealth(10);
 			self.npc:SetNWInt("HChealth", self.npc:Health() );
 		end
 	 
@@ -104,8 +108,6 @@
 			local meat = ents.Create("colonies_ameat")
 			meat:SetPos(self:GetPos()+Vector(0,0,10010))
 			meat:Spawn()
-			meat:SetOwner(self.Owner)
-			self:Remove()
 			self:Remove()
 		else
 
@@ -121,7 +123,7 @@
 		if self.age >  GetConVarNumber("rc_antlion_lifespan") then
 			self:Remove()
 			if GetConVarNumber("rc_printevents") == 1 then
-				PrintMessage(HUD_PRINTTALK,"Antlion "..self.name.." died of Old Age")
+				PrintMessage(HUD_PRINTTALK,"Antlion "..self.name.." died (age).")
 			end
 		end
 
@@ -130,14 +132,13 @@
 		end
 
 		if self.age > self.nextegg and antlionCount() <= GetConVarNumber("rc_antlion_max") then
-			local rand = math.Round(math.random(1,2.4))
+			local rand = math.Round(math.random(1,2.2))
 			for i=1,rand do
 				local egg = ents.Create("colonies_antlionegg")
 				egg:SetPos(self.npc:GetPos()+Vector(0,0,15))
 				egg:Spawn()
-				egg:SetOwner(self.Owner)
 			end
-			self.nextegg = self.age + GetConVarNumber("rc_antlion_pregtime")
+			self.nextegg = self.age + GetConVarNumber("rc_antlion_pregtime") + math.Round(math.random(-2,2))
 		end
 		
 		
@@ -147,7 +148,7 @@
 			--dieing of starvation thing
 			if self.hunger >= GetConVarNumber("rc_antlion_mhunger") then
 				if GetConVarNumber("rc_printevents") == 1 then
-					PrintMessage(HUD_PRINTTALK,"headcrab "..self.name.." died of Hunger :'(")
+					PrintMessage(HUD_PRINTTALK,"Antlion "..self.name.." died (starvation).")
 				end
 				self:Remove()
 			end
@@ -158,7 +159,7 @@
 				local closest = GetConVarNumber("rc_searchrad")
 				local sphents = ents.FindInSphere(self.npc:GetPos(),GetConVarNumber("rc_searchrad"))
 				for i, thent in ipairs(sphents) do
-					if thent:IsValid() and thent:GetPos():Distance(self.npc:GetPos())<closest then
+					if IsValid(thent) and thent:GetPos():Distance(self.npc:GetPos())<closest then
 						if  thent:GetClass() == "watermelon" or thent:GetClass() == "colonies_ameat" or thent:GetClass() == "colonies_hmeat" then
 							closest = thent:GetPos():Distance(self.npc:GetPos())
 							self.npc:SetLastPosition(thent:GetPos()+Vector(0,0,0))
@@ -167,46 +168,41 @@
 						end
 					end
 				end
-				if self.npc.melon!=nil then
-					if self.npc.melon:IsValid() then
-						self.npc:SetLastPosition(self.npc.melon:GetPos()+Vector(0,0,0))
-						self.npc:SetSchedule(71)
-					else
-						self.npc.melon = nil
-					end
-				end
 				
-				-- eating stuff
-				local sphents = ents.FindInSphere(self.npc:GetPos(),32)
-				for i, thent in ipairs(sphents) do
-					--eat Watermelon
-					if thent:GetClass() == "watermelon" then
-						if self.hunger > 50 then
-							thent:Remove()
-							self.hunger = self.hunger - 50
-							self.npc:SetHealth(self.npc:Health()+4*GetConVarNumber("rc_antlion_healing"))
-						end
-					--eat Ameat
-					elseif thent:GetClass() == "colonies_ameat" then
-						if self.hunger > 60 then
-							thent:Remove()
-							self.hunger = self.hunger - 60
-							self.npc:SetHealth(self.npc:Health()+5*GetConVarNumber("rc_antlion_healing"))
-						end
-					--eat Hmeat
-					elseif thent:GetClass() == "colonies_hmeat" then
-						if self.hunger > 45 then
-							thent:Remove()
-							self.hunger = self.hunger - 35
-							self.npc:SetHealth(self.npc:Health()+3*GetConVarNumber("rc_antlion_healing"))
-						end
-					end
+				if IsValid(self.npc.melon) then
+					self.npc:SetLastPosition(self.npc.melon:GetPos()+Vector(0,0,0))
+					self.npc:SetSchedule(71)
 				end
-			elseif self.hunger < 0 then
+			end 
+			-- eating stuff
+			local sphents = ents.FindInSphere(self.npc:GetPos(),32)
+			for i, thent in ipairs(sphents) do
+				--eat Watermelon
+				if thent:GetClass() == "watermelon" then
+					thent:Remove()
+					self.hunger = self.hunger - 50
+					break
+				--eat Ameat
+				elseif thent:GetClass() == "colonies_ameat" then
+					thent:Remove()
+					self.hunger = self.hunger - 60
+					break
+				--eat Hmeat
+				elseif thent:GetClass() == "colonies_hmeat" then
+					thent:Remove()
+					self.hunger = self.hunger - 35
+					break
+				end
+			end
+			if self.hunger < 0 then
 				self.hunger = 0
+			end
+		else
+			if self.npc:Health() < self.maxhp then
+				self.npc:SetHealth(self.npc:Health()+self.hpregen)
 			end
 		end
 		self:NextThink( CurTime() + GetConVarNumber("rc_time") )
 		return true
-	end 
+	end
 end

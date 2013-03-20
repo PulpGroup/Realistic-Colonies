@@ -26,6 +26,8 @@
     function ENT:Initialize()
 		
 		self:SetModel("models/props_foliage/tree_deciduous_01a.mdl")
+		self:PhysicsInit( SOLID_VPHYSICS ) // Make us work with physics,
+		self:SetMoveType( MOVETYPE_FLY  ) // after all, gmod is a physics
 		self:SetSolid( SOLID_VPHYSICS ) // Toolbox 
 		self.lastmelon_plant = math.Round(CurTime())
 		self.lastmelon = math.Round(CurTime())
@@ -43,7 +45,7 @@
 			self:Remove()
 		end
 		
-		self.age = self.age + GetConVarNumber("rc_time")*GetConVarNumber("rc_speed")
+		self.age = self.age + GetConVarNumber("rc_planttime")*GetConVarNumber("rc_speed")
 		if self.age > GetConVarNumber("rc_watermelonbgg_time") and treefCount() <= GetConVarNumber("rc_tree_max") then
 			local melon = ents.Create("watermelon_plant")
 			undo.ReplaceEntity(self.Entity,melon)

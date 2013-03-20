@@ -21,7 +21,7 @@
 		
 		self:SetModel("models/props_junk/watermelon01.mdl")
 		self:PhysicsInit( SOLID_VPHYSICS ) // Make us work with physics,
-		self:SetMoveType( MOVETYPE_VPHYSICS ) // after all, gmod is a physics
+		self:SetMoveType( SOLID_VPHYSICS ) // after all, gmod is a physics
 		self:SetSolid( SOLID_VPHYSICS ) // Toolbox 
 		self:GetPhysicsObject():Wake()
 		self.lastmelon = math.Round(CurTime())
@@ -32,7 +32,7 @@
 		if GetConVarNumber("rc_remove")==1 then 
 			self:Remove()
 		end
-		self.age = self.age + GetConVarNumber("rc_time")*GetConVarNumber("rc_speed")
+		self.age = self.age + GetConVarNumber("rc_planttime")*GetConVarNumber("rc_speed")
 		if self.age > GetConVarNumber("rc_watermelon_time") and treesCount() <= GetConVarNumber("rc_tree_maxs") then
 			local melon = ents.Create("watermelon_plant_small")
 			undo.ReplaceEntity(self.Entity,melon)

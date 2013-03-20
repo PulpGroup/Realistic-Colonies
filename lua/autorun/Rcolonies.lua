@@ -68,8 +68,8 @@ CreateConVar("rc_speed",1, {FCVAR_NOTIFY}) --how fast stuff should happen ?(reco
 CreateConVar("rc_meat_time",45, {FCVAR_NOTIFY}) --Time between meat remove
 
 --Watermelon stuff
-CreateConVar("rc_watermelon_time",75, {FCVAR_NOTIFY}) --Time between new plant
-CreateConVar("rc_watermelon_max",75, {FCVAR_NOTIFY}) --Maximum number of watermelons before plant stops spawning
+CreateConVar("rc_watermelon_time",60, {FCVAR_NOTIFY}) --Time between new plant
+CreateConVar("rc_watermelon_max",100, {FCVAR_NOTIFY}) --Maximum number of watermelons before plant stops spawning
 
 --Watermelon plant stuff
 CreateConVar("rc_watermelonb_time",10, {FCVAR_NOTIFY}) --Time between each new watermelon
@@ -77,9 +77,9 @@ CreateConVar("rc_watermelonbg_time",15, {FCVAR_NOTIFY}) --Time between each new 
 CreateConVar("rc_watermelonbm_time",20, {FCVAR_NOTIFY}) --Time between each new watermelon
 CreateConVar("rc_watermelonbs_time",25, {FCVAR_NOTIFY}) --Time between each new watermelon
 CreateConVar("rc_watermelonp_life",500, {FCVAR_NOTIFY}) --Time between a tree death
-CreateConVar("rc_watermelonbgg_time",300, {FCVAR_NOTIFY}) --Time between tree dead / grow
-CreateConVar("rc_watermelonbmg_time",200, {FCVAR_NOTIFY}) --Time between tree dead / grow
-CreateConVar("rc_watermelonbsg_time",100, {FCVAR_NOTIFY}) --Time between tree dead / grow
+CreateConVar("rc_watermelonbgg_time",250, {FCVAR_NOTIFY}) --Time between tree dead / grow
+CreateConVar("rc_watermelonbmg_time",160, {FCVAR_NOTIFY}) --Time between tree dead / grow
+CreateConVar("rc_watermelonbsg_time",80, {FCVAR_NOTIFY}) --Time between tree dead / grow
 CreateConVar("rc_tree_max",3, {FCVAR_NOTIFY}) --Maximum number of plant 
 CreateConVar("rc_tree_maxh",5, {FCVAR_NOTIFY}) --Maximum number of plant 
 CreateConVar("rc_tree_maxm",7, {FCVAR_NOTIFY}) --Maximum number of plant 
@@ -99,7 +99,6 @@ CreateConVar("rc_antlion_eggtime",20, {FCVAR_NOTIFY})
 CreateConVar("rc_antlion_maturetime",55, {FCVAR_NOTIFY})
 CreateConVar("rc_antlion_pregtime",95, {FCVAR_NOTIFY})
 CreateConVar("rc_antlion_max",35, {FCVAR_NOTIFY}) --Maximum antlion population
-CreateConVar("rc_antlion_healing",1, {FCVAR_NOTIFY})
 
 --Headcrab Vars
 CreateConVar("rc_zombie_lifespan",395, {FCVAR_NOTIFY}) --How long the zombie lives for
@@ -115,8 +114,7 @@ CreateConVar("rc_headcrab_mhunger",75, {FCVAR_NOTIFY})
 CreateConVar("rc_headcrab_eggtime",10, {FCVAR_NOTIFY}) --How long before egg hatches
 CreateConVar("rc_headcrab_maturetime",30, {FCVAR_NOTIFY}) --How long before the Headcrab matures
 CreateConVar("rc_headcrab_pregtime",65, {FCVAR_NOTIFY}) --How long between each egg
-CreateConVar("rc_headcrab_max",75, {FCVAR_NOTIFY}) --Maximum headcrab population
-CreateConVar("rc_headcrab_healing",1, {FCVAR_NOTIFY})
+CreateConVar("rc_headcrab_max",65, {FCVAR_NOTIFY}) --Maximum headcrab population
 CreateConVar("rc_headcrab_tozombie",1, {FCVAR_NOTIFY}) --Should Headcrabs spawn zombies when they kill citizens
 
 

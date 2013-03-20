@@ -35,10 +35,14 @@
 		
 		--set color and value
 		self.name = coloniesnames[math.random(1,#coloniesnames)]
-		self.nextegg = GetConVarNumber("rc_zombie_maturetime") + GetConVarNumber("rc_zombie_pregtime")
+		self.nextegg = GetConVarNumber("rc_zombie_maturetime") + GetConVarNumber("rc_zombie_pregtime") + math.Round(math.random(-2,2))
 		self.npc.melon=nil
 		self.hunger = 0
 		self.age=0
+		
+		self.maxhp = 50
+		self.hpregen = 1
+		
 		self.npc:SetNWString("HCname",self.name)
 		self.npc:SetNWBool("HC",true)
 		self.npc:SetNWBool("RC",true)
@@ -58,7 +62,7 @@
 		
 		if(SERVER) then
 			self.npc:SetModelScale(0.5,0);
-			self.npc:SetHealth(50);
+			self.npc:SetHealth(10);
 			self.npc:SetNWInt("HChealth", self.npc:Health() );
 		end
 		
@@ -114,7 +118,6 @@
 			local meat = ents.Create("colonies_hmeat")
 			meat:SetPos(self:GetPos()+Vector(0,0,10010))
 			meat:Spawn()
-			meat:SetOwner(self.Owner)
 			self:Remove()
 		else
 
@@ -136,7 +139,7 @@
 		if self.age >  GetConVarNumber("rc_zombie_lifespan") then
 			self:Remove()
 			if GetConVarNumber("rc_printevents") == 1 then
-				PrintMessage(HUD_PRINTTALK,"Zombie "..self.name.." died of Old Age")
+				PrintMessage(HUD_PRINTTALK,"Zombie "..self.name.." died (age).")
 			end
 		end
 
@@ -150,9 +153,8 @@
 				local egg = ents.Create("colonies_zombieegg")
 				egg:SetPos(self.npc:GetPos()+Vector(0,0,15))
 				egg:Spawn()
-				egg:SetOwner(self.Owner)
 			end
-			self.nextegg = self.age + GetConVarNumber("rc_zombie_pregtime")
+			self.nextegg = self.age + GetConVarNumber("rc_zombie_pregtime") + math.Round(math.random(-2,2))
 		end
 		
 		
@@ -162,7 +164,7 @@
 			--dieing of starvation thing
 			if self.hunger >= GetConVarNumber("rc_zombie_mhunger") then
 				if GetConVarNumber("rc_printevents") == 1 then
-					PrintMessage(HUD_PRINTTALK,"zombie "..self.name.." died of Hunger :'(")
+					PrintMessage(HUD_PRINTTALK,"zombie "..self.name.." died (starvation).")
 				end
 				self:Remove()
 			end
@@ -173,7 +175,7 @@
 				local closest = GetConVarNumber("rc_searchrad")
 				local sphents = ents.FindInSphere(self.npc:GetPos(),GetConVarNumber("rc_searchrad"))
 				for i, thent in ipairs(sphents) do
-					if thent:IsValid() and thent:GetPos():Distance(self.npc:GetPos())<closest then
+					if IsValid(thent) and thent:GetPos():Distance(self.npc:GetPos())<closest then
 						if  thent:GetClass() == "watermelon" or thent:GetClass() == "colonies_ameat" or thent:GetClass() == "colonies_hmeat" then
 							closest = thent:GetPos():Distance(self.npc:GetPos())
 							self.npc:SetLastPosition(thent:GetPos()+Vector(0,0,0))
@@ -182,13 +184,10 @@
 						end
 					end
 				end
-				if self.npc.melon!=nil then
-					if self.npc.melon:IsValid() then
-						self.npc:SetLastPosition(self.npc.melon:GetPos()+Vector(0,0,0))
-						self.npc:SetSchedule(71)
-					else
-						self.npc.melon = nil
-					end
+				
+				if IsValid(self.npc.melon) then
+					self.npc:SetLastPosition(self.npc.melon:GetPos()+Vector(0,0,0))
+					self.npc:SetSchedule(71)
 				end
 				
 				
@@ -197,29 +196,25 @@
 				for i, thent in ipairs(sphents) do
 					--eat Watermelon
 					if thent:GetClass() == "watermelon" then
-						if self.hunger > 50 then
-							thent:Remove()
-							self.hunger = self.hunger - 50
-							self.npc:SetHealth(self.npc:Health()+4*GetConVarNumber("rc_headcrab_healing"))
-						end
+						thent:Remove()
+						self.hunger = self.hunger - 50
 					--eat Ameat
 					elseif thent:GetClass() == "colonies_ameat" then
-						if self.hunger > 60 then
-							thent:Remove()
-							self.hunger = self.hunger - 60
-							self.npc:SetHealth(self.npc:Health()+5*GetConVarNumber("rc_headcrab_healing"))
-						end
+						thent:Remove()
+						self.hunger = self.hunger - 60
 					--eat Hmeat
 					elseif thent:GetClass() == "colonies_hmeat" then
-						if self.hunger > 45 then
-							thent:Remove()
-							self.hunger = self.hunger - 35
-							self.npc:SetHealth(self.npc:Health()+3*GetConVarNumber("rc_headcrab_healing"))
-						end
+						thent:Remove()
+						self.hunger = self.hunger - 35
 					end
 				end
-			elseif self.hunger < 0 then
+			end
+			if self.hunger < 0 then
 				self.hunger = 0
+			end
+		else
+			if self.npc:Health() < self.maxhp then
+				self.npc:SetHealth(self.npc:Health()+self.hpregen)
 			end
 		end
 		self:NextThink( CurTime() + GetConVarNumber("rc_time") )

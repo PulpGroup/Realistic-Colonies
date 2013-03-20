@@ -42,7 +42,7 @@
 			self:Remove()
 		end
 		
-		self.age = self.age + GetConVarNumber("rc_time")*GetConVarNumber("rc_speed")
+		self.age = self.age + GetConVarNumber("rc_planttime")*GetConVarNumber("rc_speed")
 		if self.age > GetConVarNumber("rc_watermelonbgg_time") and treemCount() <= GetConVarNumber("rc_tree_maxm") then
 			local melon = ents.Create("watermelon_plant_medium")
 			undo.ReplaceEntity(self.Entity,melon)
