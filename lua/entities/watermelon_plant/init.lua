@@ -20,8 +20,8 @@
     function ENT:Initialize()
 		self:SetModel("models/props_foliage/oak_tree01.mdl")
 		self:PhysicsInit( SOLID_VPHYSICS ) // Make us work with physics,
-		self:SetMoveType( MOVETYPE_FLY  ) // after all, gmod is a physics
-		self:SetSolid( SOLID_VPHYSICS ) // Toolbox 
+		self:SetSolid( SOLID_VPHYSICS ) // Toolbox
+		self:GetPhysicsObject():EnableMotion(false)
 		self.lastmelon_plant = math.Round(CurTime())
 		self.lastmelon = math.Round(CurTime())
 		self:SetNWBool("RC",true)

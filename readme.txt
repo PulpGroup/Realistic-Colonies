@@ -3,13 +3,29 @@ Do not clame as your addon.
 
 Todo :
 - genetic thing
-- health regen
 - fix the resize colision bug.
-- fix the colision bug with tree.
-- 
 
 What is new :
 V 2.0 :
-- Gmod 13 compatible.
-- Npc are growing when they are "baby".
-- Npc are not pink anymore.
+- Adding growing effect of npc.
+- Fixed headcrab having different Hp depanding of their model.
+- Removed pink color of young npc.
+
+- Fixed plant related timer wich was not according to delay between each execution.
+- Fixed an Antlion death message showed as an Headcrab death message.
+- Fixed Antlion and headcrab being able to eat more than 1 food at once.
+- Fixed the colision bug with tree.
+- Changed part of code that was quite useless.
+
+- Changed death message.
+- Changed how much leg are layed at once.
+- Tree are growing faster.
+- Increased max melon.
+- Reduced health on spawn.
+- Reduced max headcrab.
+
+- Added random thing to egg time so the whole colonie does not lay egg at once.
+- Added health regeneration overtime.
+- They can now eat while they are not too hungry. (still imposible if <40)
+
+- Removed Hp gained by eating.
