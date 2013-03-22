@@ -50,10 +50,10 @@ end
 //--------------------------------------------
 function SWEP:Think()
 	if(SERVER) then
-		self:SetColor(255,255,255,0); -- Faire disparaitre le pistolet
+		self:SetColor( Color(255,255,255,0) ); -- Faire disparaitre le pistolet
 		
 		if(self:GetNWEntity("selectedEnt") != nil and self:GetNWEntity("selectedEnt"):IsValid()) then
-			self:GetNWEntity("selectedEnt"):SetColor(0,0,255,255);
+			self:GetNWEntity("selectedEnt"):SetColor( Color(0,0,255,255) );
 		end
 	end
 end 
@@ -67,7 +67,7 @@ function SWEP:PrimaryAttack()
 	if(self:GetNWEntity("selectedEnt") != nil and self:GetNWEntity("selectedEnt"):IsValid()) then
 		local color = self:GetNWVector("color");
 	
-		self:GetNWEntity("selectedEnt"):SetColor(color.x,color.y,color.z,255);
+		self:GetNWEntity("selectedEnt"):SetColor(255,255,255,255);
 		self:GetNWEntity("selectedEnt"):SetNWBool("isSelected", false);
 		
 		self:SetNWEntity("selectedEnt", nil);

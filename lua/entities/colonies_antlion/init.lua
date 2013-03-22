@@ -61,6 +61,7 @@
 			self.npc:SetModelScale(0.5,0);
 			self.npc:SetHealth(10);
 			self.npc:SetNWInt("HChealth", self.npc:Health() );
+			self.scale = 0.5
 		end
 	 
     end
@@ -95,6 +96,7 @@
 			if self.age < GetConVarNumber("rc_antlion_maturetime") then
 				local Scale =  0.5 + (self.age/GetConVarNumber("rc_antlion_maturetime"))*(0.5)
 				self.npc:SetModelScale(Scale,0);
+				self.scale = Scale;
 			end
 		end
 	
@@ -107,6 +109,7 @@
 		if IsValid(self.npc) == false then
 			local meat = ents.Create("colonies_ameat")
 			meat:SetPos(self:GetPos()+Vector(0,0,10010))
+			meat:SetModelScale(self.scale,0);
 			meat:Spawn()
 			self:Remove()
 		else

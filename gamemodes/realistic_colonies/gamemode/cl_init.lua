@@ -34,7 +34,7 @@ function RC_ChooseTeam( handler, id, encoded, decoded )
 	end
  
 end
-datastream.Hook( "RC_ChooseTeam", RC_ChooseTeam );
+net.Receive( "RC_ChooseTeam", RC_ChooseTeam );
 
 function RC_HUD()
 	draw.DrawText("You are on the "..LocalPlayer():GetNWString("RC_team").."'s team", "ScoreboardText", 50, 30, Color(255, 255, 255, 255), TEXT_ALIGN_LEFT);
