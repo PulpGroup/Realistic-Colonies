@@ -43,6 +43,7 @@
 		
 		self.maxhp = 20
 		self.hpregen = 1
+		self.scale = 0.5
 		
 		self.npc:SetNWString("HCname",self.name)
 		self.npc:SetNWBool("HC",true)
@@ -62,7 +63,7 @@
 		end
 		
 		if(SERVER) then
-			self.npc:SetModelScale(0.5,0);
+			self.npc:SetModelScale(self.scale,0);
 			self.npc:SetHealth(5);
 			self.npc:SetNWInt("HChealth", self.npc:Health() );
 		end
@@ -96,9 +97,9 @@
 	
 		if(SERVER and IsValid(self.npc) ) then
 			self.npc:SetNWInt("HChealth", self.npc:Health() );
-			if self.age < GetConVarNumber("rc_headcrab_maturetime") then
-				local Scale =  0.5 + (self.age/GetConVarNumber("rc_headcrab_maturetime"))*(0.5)
-				self.npc:SetModelScale(Scale,0);
+			if self.age <= GetConVarNumber("rc_headcrab_maturetime") then
+				self.scale = 0.5 + (self.age/GetConVarNumber("rc_headcrab_maturetime"))*(0.5)
+				self.npc:SetModelScale(self.scale,0);
 			end
 		end
 	
@@ -110,6 +111,7 @@
 		if IsValid(self.npc) == false then
 			local meat = ents.Create("colonies_hmeat")
 			meat:SetPos(self:GetPos()+Vector(0,0,10010))
+			meat:SetModelScale(self.scale,0);
 			meat:Spawn()
 			self:Remove()
 		else
@@ -189,17 +191,17 @@
 				--eat Watermelon
 				if thent:GetClass() == "watermelon" then
 					thent:Remove()
-					self.hunger = self.hunger - 50
+					self.hunger = math.Round(self.hunger - 50*thent:GetModelScale())
 					break
 				--eat Ameat
 				elseif thent:GetClass() == "colonies_ameat" then
 					thent:Remove()
-					self.hunger = self.hunger - 60
+					self.hunger = math.Round(self.hunger - 60*thent:GetModelScale())
 					break
 				--eat Hmeat
 				elseif thent:GetClass() == "colonies_hmeat" then
 					thent:Remove()
-					self.hunger = self.hunger - 35
+					self.hunger = math.Round(self.hunger - 35*thent:GetModelScale())
 					break
 				end
 			end
