@@ -52,7 +52,7 @@ function SWEP:Think()
 	if(SERVER) then
 		self:SetColor( Color(255,255,255,0) ); -- Faire disparaitre le pistolet
 		
-		if(self:GetNWEntity("selectedEnt") != nil and self:GetNWEntity("selectedEnt"):IsValid()) then
+		if(IsValid(self:GetNWEntity("selectedEnt"))) then
 			self:GetNWEntity("selectedEnt"):SetColor( Color(0,0,255,255) );
 		end
 	end
@@ -64,35 +64,30 @@ end
 function SWEP:PrimaryAttack()
 	local trace = self.Owner:GetEyeTrace();
 	
-	if(self:GetNWEntity("selectedEnt") != nil and self:GetNWEntity("selectedEnt"):IsValid()) then
-		local color = self:GetNWVector("color");
-	
-		self:GetNWEntity("selectedEnt"):SetColor(255,255,255,255);
+	if(IsValid(self:GetNWEntity("selectedEnt"))) then
 		self:GetNWEntity("selectedEnt"):SetNWBool("isSelected", false);
+		self:GetNWEntity("selectedEnt"):SetColor(255,255,255);
 		
 		self:SetNWEntity("selectedEnt", nil);
 	end
 	
-	if(trace.Entity != nil and trace.Entity:IsValid() and rc_api.isNpc(trace.Entity)==true) then	
+	if( IsValid(trace.Entity) and rc_api.isNpc(trace.Entity)==true) then	
 		if( GetConVarString("rc_gamemode_enabled") == "1" ) then
 			if self.Owner:GetNWString("RC_team")=="antlion" and rc_api.isAntlion(trace.Entity)==true then
 				self:SetNWEntity("selectedEnt", trace.Entity);
 				local r,g,b,a = trace.Entity:GetColor();
-				self:SetNWVector("color", Vector(r,g,b));
 				trace.Entity:SetNWBool("isSelected", true);
 				trace.Entity:SetColor(0,0,255,255);
 			end
 			if self.Owner:GetNWString("RC_team")=="headcrab" and rc_api.isHeadcrab(trace.Entity)==true then
 				self:SetNWEntity("selectedEnt", trace.Entity);
 				local r,g,b,a = trace.Entity:GetColor();
-				self:SetNWVector("color", Vector(r,g,b));
 				trace.Entity:SetNWBool("isSelected", true);
 				trace.Entity:SetColor(0,0,255,255);
 			end
 		else
 			self:SetNWEntity("selectedEnt", trace.Entity);
 			local r,g,b,a = trace.Entity:GetColor();
-			self:SetNWVector("color", Vector(r,g,b));
 			trace.Entity:SetNWBool("isSelected", true);
 			trace.Entity:SetColor(0,0,255,255);
 		end
@@ -106,22 +101,34 @@ end
 function SWEP:SecondaryAttack()
 	local trace = self.Owner:GetEyeTrace();
 	
-	if( self:GetNWEntity("selectedEnt") != nil and self:GetNWEntity("selectedEnt"):IsValid() and self:GetNWEntity("selectedEnt"):IsNPC() ) then
+	local NPC = self:GetNWEntity("selectedEnt")
+	
+	if( IsValid(NPC) and NPC:IsNPC() ) then
 		
-		if( trace.Entity != nil and trace.Entity:IsValid() ) then
-			self:GetNWEntity("selectedEnt"):SetTarget(trace.Entity);
-			self:GetNWEntity("selectedEnt"):AddEntityRelationship( trace.Entity, D_HT, 999 );
+		if( IsValid(trace.Entity) ) then
+			if( IsValid(self:GetNWEntity("lastAttack")) ) then
+				if (trace.Entity == self:GetNWEntity("lastAttack")) then
+					NPC:AddEntityRelationship( self:GetNWEntity("lastAttack"), D_LI, 999 );
+					self:SetNWEntity("lastAttack", nil);
+					return
+				end
+				NPC:AddEntityRelationship( self:GetNWEntity("lastAttack"), D_LI, 999 );
+				self:SetNWEntity("lastAttack", nil);
+			end
+			
+			NPC:SetTarget(trace.Entity);
+			NPC:AddEntityRelationship( trace.Entity, D_HT, 999 );
 			self:SetNWEntity("lastAttack", trace.Entity );
 			
-			self:GetNWEntity("selectedEnt"):SetLastPosition(trace.Entity:GetPos());
-			self:GetNWEntity("selectedEnt"):SetSchedule(71);
+			// useless :D
+			//NPC:SetLastPosition(trace.Entity:GetPos());
+			//NPC:SetSchedule(71);
 		else					
-			self:GetNWEntity("selectedEnt"):SetLastPosition(trace.HitPos);
-			self:GetNWEntity("selectedEnt"):SetSchedule(71);
+			NPC:SetLastPosition(trace.HitPos);
+			NPC:SetSchedule(71);
 			
-			if( self:GetNWEntity("lastAttack") != nil and self:GetNWEntity("lastAttack"):IsValid() ) then
-				self:GetNWEntity("selectedEnt"):AddEntityRelationship( self:GetNWEntity("lastAttack"), D_LI, 999 );
-			
+			if( IsValid(self:GetNWEntity("lastAttack")) ) then
+				NPC:AddEntityRelationship( self:GetNWEntity("lastAttack"), D_LI, 999 );
 				self:SetNWEntity("lastAttack", nil);
 			end
 		end

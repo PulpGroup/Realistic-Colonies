@@ -15,7 +15,7 @@ if (CLIENT) then
 		button1:SetPos( 10, 30 )
 		button1:SetText( "HeadCrab Team" )
 		button1.DoClick = function( button1 )
-			datastream.StreamToServer( "RC_ChooseTeam_Finish", "headcrab" );
+			//datastream.StreamToServer( "RC_ChooseTeam_Finish", "headcrab" );
 			DermaPanel:Close();
 		end
 	
@@ -24,12 +24,12 @@ if (CLIENT) then
 		button2:SetPos( 120, 30 )
 		button2:SetText( "Antlion Team" )
 		button2.DoClick = function( button2 )
-			datastream.StreamToServer( "RC_ChooseTeam_Finish", "antlion" );
+			//datastream.StreamToServer( "RC_ChooseTeam_Finish", "antlion" );
 			DermaPanel:Close();
 		end
  
 	end
-	datastream.Hook( "RC_ChooseTeam", RC_ChooseTeam );
+	//datastream.Hook( "RC_ChooseTeam", RC_ChooseTeam );
 
 	function RC_HUD()
 		if (GetConVarString("rc_gamemode_enabled") == "1") then 

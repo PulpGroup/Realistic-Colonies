@@ -98,7 +98,11 @@
 			self.npc:SetNWInt("HChealth", self.npc:Health() );
 			if self.age <= GetConVarNumber("rc_zombie_maturetime") then
 				self.scale = 0.5 + (self.age/GetConVarNumber("rc_zombie_maturetime"))*(0.5)
+<<<<<<< HEAD
+				self.npc:SetModelScale(self.scale,GetConVarNumber("rc_time"));
+=======
 				self.npc:SetModelScale(self.scale,0);
+>>>>>>> 5ca6102dbe77762d600f58cbefc8bbe7c8506de1
 			end
 		end
 	
@@ -201,6 +205,17 @@
 					--eat Watermelon
 					if thent:GetClass() == "watermelon" then
 						thent:Remove()
+<<<<<<< HEAD
+						self.hunger = self.hunger - 50*thent:GetModelScale()
+					--eat Ameat
+					elseif thent:GetClass() == "colonies_ameat" then
+						thent:Remove()
+						self.hunger = self.hunger - 60*thent:GetModelScale()
+					--eat Hmeat
+					elseif thent:GetClass() == "colonies_hmeat" then
+						thent:Remove()
+						self.hunger = self.hunger - 35*thent:GetModelScale()
+=======
 						self.hunger = math.Round(self.hunger - 50*thent:GetModelScale())
 					--eat Ameat
 					elseif thent:GetClass() == "colonies_ameat" then
@@ -210,6 +225,7 @@
 					elseif thent:GetClass() == "colonies_hmeat" then
 						thent:Remove()
 						self.hunger = math.Round(self.hunger - 35*thent:GetModelScale())
+>>>>>>> 5ca6102dbe77762d600f58cbefc8bbe7c8506de1
 					end
 				end
 			end

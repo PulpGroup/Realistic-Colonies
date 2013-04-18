@@ -3,10 +3,18 @@ Do not clame as your addon.
 
 Todo :
 - genetic thing
-- fix the resize colision bug.
 
 What is new :
-V 2.0 :
+V 2.0 pre release 2 :
+- melon are not colony killer :).
+- information writen over npc head are now related to their scale.
+- fixed weapon to controll npc.
+- fixed an other bug with weapon.
+- reworked the weapon a bit.
+- the resize bug is kinda fixed, since it is smoother.
+- commented the old thing so it does not any error anymore.
+
+V 2.0 pre release :
 - Adding growing effect of npc.
 - Fixed headcrab having different Hp depanding of their model.
 - Removed pink color of young npc.

@@ -45,4 +45,4 @@ function RC_ChooseTeam_Finish( pl, handler, id, encoded, decoded )
 	pl:SetNWString("RC_team", decoded);
  
 end
-datastream.Hook( "RC_ChooseTeam_Finish", RC_ChooseTeam_Finish );
+//datastream.Hook( "RC_ChooseTeam_Finish", RC_ChooseTeam_Finish );

@@ -24,6 +24,7 @@
 		self:SetMoveType( SOLID_VPHYSICS ) // after all, gmod is a physics
 		self:SetSolid( SOLID_VPHYSICS ) // Toolbox 
 		self:GetPhysicsObject():Wake()
+		self:GetPhysicsObject():SetMass( 1 ) 
 		self.lastmelon = math.Round(CurTime())
 		self.age=0
     end

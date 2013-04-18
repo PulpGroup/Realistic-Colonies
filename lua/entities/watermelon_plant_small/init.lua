@@ -55,7 +55,7 @@
 			self.nextmelon = GetConVarNumber("rc_watermelonbs_time") + self.age
 			local melon = ents.Create("watermelon")
 			local dist = GetConVarNumber("rc_watermelons_distance")
-			melon:SetPos(self:GetPos()+Vector(math.random(-dist,dist),math.random(-dist,dist),200))
+			melon:SetPos(self:GetPos()+Vector(math.random(-dist,dist),math.random(-dist,dist),75))
 			melon:Spawn()
 			melon:SetOwner(self.Owner)
 			self.lastmelon = math.Round(CurTime())

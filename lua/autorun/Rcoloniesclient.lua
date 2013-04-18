@@ -27,10 +27,12 @@ if (CLIENT) then
 					local green = ( (100-hc:GetNWInt("HChunger"))/100 )*255;
 					local alpha = (1-dist/mdist)* 255
 					
-					if hc:GetClass() == "npc_zombie" or hc:GetClass() == "npc_antlion" then
-						screen_pos = ( hc:GetPos()+Vector(0,0,75) ):ToScreen();
+					if hc:GetClass() == "npc_zombie" then
+						screen_pos = ( hc:GetPos()+Vector(0,0,80)*hc:GetModelScale() ):ToScreen();
+					elseif hc:GetClass() == "npc_antlion" then
+						screen_pos = ( hc:GetPos()+Vector(0,0,70)*hc:GetModelScale() ):ToScreen();
 					else
-						screen_pos = ( hc:GetPos()+Vector(0,0,25) ):ToScreen();
+						screen_pos = ( hc:GetPos()+Vector(0,0,40)*hc:GetModelScale() ):ToScreen();
 					end					
 					
 					if hc:GetClass() == "npc_antlion" then
