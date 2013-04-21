@@ -31,7 +31,6 @@ AddCSLuaFile("Rcoloniesclient.lua")
 		"Erik",
 		"Harry",
 		"Jean",
-		"firefox",
 		"Harry",
 		"Abby",
 		"Alfred",
@@ -43,13 +42,8 @@ AddCSLuaFile("Rcoloniesclient.lua")
 		"Bryce",
 		"Alice",
 		"Ashley",
-		"Mozilla",
-		"Thunderbird",
-		"Steam",
 		"Gordon",
-		"chrome",
-		"Bill",
-		"Gates"
+		"Bill"
 	}
 
 --Global Convar
@@ -65,11 +59,11 @@ CreateConVar("rc_speed",1, {FCVAR_NOTIFY}) --how fast stuff should happen ?(reco
 
 
 --Meat stuff
-CreateConVar("rc_meat_time",45, {FCVAR_NOTIFY}) --Time between meat remove
+CreateConVar("rc_meat_time",60, {FCVAR_NOTIFY}) --Time between meat remove
 
 --Watermelon stuff
 CreateConVar("rc_watermelon_time",60, {FCVAR_NOTIFY}) --Time between new plant
-CreateConVar("rc_watermelon_max",100, {FCVAR_NOTIFY}) --Maximum number of watermelons before plant stops spawning
+CreateConVar("rc_watermelon_max",150, {FCVAR_NOTIFY}) --Maximum number of watermelons before plant stops spawning
 
 --Watermelon plant stuff
 CreateConVar("rc_watermelonb_time",10, {FCVAR_NOTIFY}) --Time between each new watermelon
@@ -102,7 +96,7 @@ CreateConVar("rc_antlion_max",35, {FCVAR_NOTIFY}) --Maximum antlion population
 
 --Headcrab Vars
 CreateConVar("rc_zombie_lifespan",395, {FCVAR_NOTIFY}) --How long the zombie lives for
-CreateConVar("rc_zombie_max",15, {FCVAR_NOTIFY}) --Maximum zombie population
+CreateConVar("rc_zombie_max",25, {FCVAR_NOTIFY}) --Maximum zombie population
 CreateConVar("rc_zombie_mhunger",115, {FCVAR_NOTIFY})
 CreateConVar("rc_zombie_maturetime",65, {FCVAR_NOTIFY}) --How long before the zombie matures
 CreateConVar("rc_zombie_pregtime",65, {FCVAR_NOTIFY}) --How long between each egg
