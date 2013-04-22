@@ -158,10 +158,13 @@
 		
 			--dieing of starvation thing
 			if self.hunger >= GetConVarNumber("rc_headcrab_mhunger") then
-				if GetConVarNumber("rc_printevents") == 1 then
-					PrintMessage(HUD_PRINTTALK,"headcrab "..self.name.." died (starvation).")
+				self.npc:SetHealth(self.npc:Health()-1)
+				if(self.npc:Health() <= 0) then
+					if GetConVarNumber("rc_printevents") == 1 then
+						PrintMessage(HUD_PRINTTALK,"headcrab "..self.name.." died (starvation).")
+					end
+					self:Remove()
 				end
-				self:Remove()
 			end
 			
 			if self.hunger>45 then
