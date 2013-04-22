@@ -154,6 +154,10 @@
 					if GetConVarNumber("rc_printevents") == 1 then
 						PrintMessage(HUD_PRINTTALK,"antlion "..self.name.." died (starvation).")
 					end
+					local meat = ents.Create("colonies_ameat")
+					meat:SetPos(self:GetPos()+Vector(0,0,10010))
+					meat:SetModelScale(self.scale,0);
+					meat:Spawn()
 					self:Remove()
 				end
 			end
