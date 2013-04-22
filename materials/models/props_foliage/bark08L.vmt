@@ -1,8 +1,0 @@
-"UnlitGeneric"
-{
-	// Original shader: BaseTexture
-	"$basetexture" "models/props_foliage/bark08L"
-	"$model" 1
-	"$surfaceprop" "wood"
-	"%keywords" "rnl"
-}

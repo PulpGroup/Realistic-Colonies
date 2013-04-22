@@ -1,9 +1,0 @@
-VertexLitGeneric
-{
-	"$basetexture"	"models\props\de_inferno\bushgreen"
-	"$alphatest" "1"
-	"$nocull" "1"
-	"$model" "1"
-	"$surfaceprop" "foliage"
-
-}
