@@ -43,7 +43,7 @@
 		
 		self.maxhp = 20
 		self.hpregen = 1
-		self.scale = 0.5
+		self.scale = 0.1
 		
 		self.npc:SetNWString("HCname",self.name)
 		self.npc:SetNWBool("HC",true)
