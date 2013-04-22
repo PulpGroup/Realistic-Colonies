@@ -97,7 +97,7 @@
 		if (SERVER and IsValid(self.npc) ) then
 			self.npc:SetNWInt("HChealth", self.npc:Health() );
 			if self.age <= GetConVarNumber("rc_zombie_maturetime") then
-				self.scale = 0.5 + (self.age/GetConVarNumber("rc_zombie_maturetime"))*(0.5)
+				self.scale = 0.1 + (self.age/GetConVarNumber("rc_zombie_maturetime"))*(0.9)
 				self.npc:SetModelScale(self.scale,GetConVarNumber("rc_time"));
 			end
 		end
