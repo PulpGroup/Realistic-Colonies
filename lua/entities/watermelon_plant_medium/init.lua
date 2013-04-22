@@ -23,7 +23,7 @@
 
       
     function ENT:Initialize()
-		self:SetModel("models/props_foliage/tree_deciduous_03b.mdl")
+		self:SetModel("models/props_foliage/rd_mediumbush01.mdl")
 		self:PhysicsInit( SOLID_VPHYSICS ) // Make us work with physics,
 		self:SetSolid( SOLID_VPHYSICS ) // Toolbox
 		self:GetPhysicsObject():EnableMotion(false)

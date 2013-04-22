@@ -18,7 +18,7 @@
 
       
     function ENT:Initialize()
-		self:SetModel("models/props_foliage/oak_tree01.mdl")
+		self:SetModel("models/props_foliage/rd_tree01a.mdl")
 		self:PhysicsInit( SOLID_VPHYSICS ) // Make us work with physics,
 		self:SetSolid( SOLID_VPHYSICS ) // Toolbox
 		self:GetPhysicsObject():EnableMotion(false)

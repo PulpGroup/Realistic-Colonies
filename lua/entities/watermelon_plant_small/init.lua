@@ -24,8 +24,8 @@
       
     function ENT:Initialize()
 		
-		self:SetModel("models/props_foliage/shrub_01a.mdl")
-		self:SetSolid( SOLID_VPHYSICS ) // Toolbox 
+		self:SetModel("models/props_foliage/r_plant"..math.random(1,7)..".mdl")
+		self:SetSolid( SOLID_VPHYSICS )		
 		self.lastmelon_plant = math.Round(CurTime())
 		self.lastmelon = math.Round(CurTime())
 		self:SetNWBool("RC",true)

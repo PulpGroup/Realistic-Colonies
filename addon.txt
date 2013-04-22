@@ -1,0 +1,11 @@
+"AddonInfo"
+{
+	"name"			"Realistic Colonies"
+	"version"		"3.0"
+	"up_date"		"22/04/2013"
+	"author_name"		"wamilou/The Surfer"
+	"author_email"		""
+	"author_url"		""
+	"info"			"Github link - https://github.com/wamilou/Realistic-Colonies"
+	"override"		"0"
+}
