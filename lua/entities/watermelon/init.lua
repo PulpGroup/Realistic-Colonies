@@ -49,7 +49,6 @@
 	
      
      function ENT:OnTakeDamage(dmg)
-     self:Remove()
      end
 	 
 	    
