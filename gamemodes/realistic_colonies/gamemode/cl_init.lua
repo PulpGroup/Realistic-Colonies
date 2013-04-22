@@ -1,3 +1,5 @@
+include( "shared.lua" )
+
 function RC_ChooseTeam( handler, id, encoded, decoded )
 
 	local DermaPanel = vgui.Create( "DFrame" ) -- Creates the frame itself
@@ -17,7 +19,7 @@ function RC_ChooseTeam( handler, id, encoded, decoded )
 		--datastream.StreamToServer( "RC_ChooseTeam_Finish", "headcrab" );
 		net.Start("RC_ChooseTeam_Finish");
 		net.WriteString("headcrab");
-		net.Send(ply);
+		net.SendToServer();
 		DermaPanel:Close();
 	end
 	
@@ -29,7 +31,7 @@ function RC_ChooseTeam( handler, id, encoded, decoded )
 		--datastream.StreamToServer( "RC_ChooseTeam_Finish", "antlion" );
 		net.Start("RC_ChooseTeam_Finish");
 		net.WriteString("antlion");
-		net.Send(ply);
+		net.SendToServer();
 		DermaPanel:Close();
 	end
  
@@ -37,7 +39,7 @@ end
 net.Receive( "RC_ChooseTeam", RC_ChooseTeam );
 
 function RC_HUD()
-	draw.DrawText("You are on the "..LocalPlayer():GetNWString("RC_team").."'s team", "ScoreboardText", 50, 30, Color(255, 255, 255, 255), TEXT_ALIGN_LEFT);
+	draw.DrawText("You are on the "..LocalPlayer():GetNWString("RC_team").."'s team", "BudgetLabel", 50, 30, Color(255, 255, 255, 255), TEXT_ALIGN_LEFT);
 end
 hook.Add("HUDPaint", "RC_HUD", RC_HUD)
 

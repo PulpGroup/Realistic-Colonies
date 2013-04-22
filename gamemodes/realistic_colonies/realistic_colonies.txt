@@ -4,6 +4,7 @@
 	"title"		"Realistic Colonies"
 	"maps"		""
 	"menusystem"	"1"
+	"workshopid" "139477348"
 
 	"settings"
 	{

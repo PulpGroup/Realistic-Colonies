@@ -1,4 +1,10 @@
-AddCSLuaFile("cl_init.lua");
+AddCSLuaFile( "cl_init.lua" )
+AddCSLuaFile( "shared.lua" )
+
+include( "shared.lua" )
+
+util.AddNetworkString("RC_ChooseTeam");
+util.AddNetworkString("RC_ChooseTeam_Finish");
 
 -- Donne au joueur l'order gun
 function RC_PlayerSet( ply )
@@ -17,7 +23,7 @@ function RC_PlayerSpawn( ply )
 end
 hook.Add( "PlayerSpawn", "RC_PlayerSpawn", RC_PlayerSpawn );
 
-function RC_ChooseTeam_Finish( length, client )
+function RC_ChooseTeam_Finish( length, pl )
 	local team = net.ReadString();
 	pl:SetNWString("RC_team", team);
 end
