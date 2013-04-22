@@ -94,7 +94,7 @@
 		if(SERVER and IsValid(self.npc) ) then
 			self.npc:SetNWInt("HChealth", self.npc:Health() );
 			if self.age <= GetConVarNumber("rc_antlion_maturetime") then
-				self.scale = 0.5 + (self.age/GetConVarNumber("rc_antlion_maturetime"))*(0.5)
+				self.scale = 0.1 + (self.age/GetConVarNumber("rc_antlion_maturetime"))*(0.9)
 				self.npc:SetModelScale(self.scale,GetConVarNumber("rc_time"));
 			end
 		end
@@ -149,10 +149,17 @@
 		
 			--dieing of starvation thing
 			if self.hunger >= GetConVarNumber("rc_antlion_mhunger") then
-				if GetConVarNumber("rc_printevents") == 1 then
-					PrintMessage(HUD_PRINTTALK,"Antlion "..self.name.." died (starvation).")
+				self.npc:SetHealth(self.npc:Health()-1)
+				if(self.npc:Health() <= 0) then
+					if GetConVarNumber("rc_printevents") == 1 then
+						PrintMessage(HUD_PRINTTALK,"antlion "..self.name.." died (starvation).")
+					end
+					local meat = ents.Create("colonies_ameat")
+					meat:SetPos(self:GetPos()+Vector(0,0,10010))
+					meat:SetModelScale(self.scale,0);
+					meat:Spawn()
+					self:Remove()
 				end
-				self:Remove()
 			end
 			
 			if self.hunger>45 then
