@@ -130,6 +130,7 @@ CreateConVar("rc_antlion_max",35, {FCVAR_NOTIFY}) --Maximum antlion population
 
 --Headcrab Vars
 CreateConVar("rc_zombie_lifespan",395, {FCVAR_NOTIFY}) -- Lifespan of zombies
+CreateConVar("rc_zombie_hunger",1, {FCVAR_NOTIFY}) -- How quickly the hunger increases
 CreateConVar("rc_zombie_max",25, {FCVAR_NOTIFY}) --Maximum zombie population
 CreateConVar("rc_zombie_mhunger",115, {FCVAR_NOTIFY}) -- Maximum hunger of zombies.
 CreateConVar("rc_zombie_maturetime",65, {FCVAR_NOTIFY}) --How long before the zombie matures

@@ -25,9 +25,7 @@
     function ENT:Initialize()
 		
 		self:SetModel("models/props_foliage/shrub_01a.mdl")
-		self:PhysicsInit( SOLID_VPHYSICS ) // Make us work with physics,
 		self:SetSolid( SOLID_VPHYSICS ) // Toolbox
-		self:GetPhysicsObject():EnableMotion(false)
 		self.lastmelon_plant = math.Round(CurTime())
 		self.lastmelon = math.Round(CurTime())
 		self:SetNWBool("RC",true)
