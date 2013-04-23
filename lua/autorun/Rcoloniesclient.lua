@@ -1,14 +1,5 @@
 if (CLIENT) then
-	function drawHCInfo ( )
-		if LocalPlayer():GetEyeTraceNoCursor().Entity:IsValid() then
-			local hc = LocalPlayer():GetEyeTraceNoCursor().Entity;
-			if hc:IsValid() and rc_api.isNpc(hc)==true then
-				draw.DrawText("Name: "..hc:GetNWString("HCname").."\nHunger: "..hc:GetNWInt("HChunger").." Age: "..hc:GetNWInt("HCage"),"BudgetLabel",ScrW()/2,ScrH()/2,Color(255,255,255,255),1)
-			end
-		end
-	end
-	hook.Add("HUDPaint","ALInfo",drawHCInfo)
-	
+
 	function drawName ( )
 		local mdist = GetConVarNumber("rc_view")
 		if mdist == 0 then

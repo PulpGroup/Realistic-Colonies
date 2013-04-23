@@ -7,16 +7,10 @@
 		local wms = ents.FindByClass("watermelon")
 		return #wms
 	end
-
-
-	function treefCount()
-		local wms = ents.FindByClass("watermelon_plant")
-		return #wms
-	end
 	 
 	 function ENT:SpawnFunction( ply, tr)
 		local SpawnPos = tr.HitPos
-		local ent = ents.Create( "watermelon_plant_grow" )
+		local ent = ents.Create( "watermelon_plant_huge" )
 		ent:SetPos( SpawnPos )
 		ent:Spawn()
 		return ent
@@ -24,17 +18,15 @@
 
       
     function ENT:Initialize()
-		
-		self:SetModel("models/props_foliage/rd_appletree01.mdl")
+		self:SetModel("models/props_foliage/rd_tree01a.mdl")
 		self:PhysicsInit( SOLID_VPHYSICS ) // Make us work with physics,
-		self:SetSolid( SOLID_VPHYSICS ) // Toolbox 
+		self:SetSolid( SOLID_VPHYSICS ) // Toolbox
 		self:GetPhysicsObject():EnableMotion(false)
 		self.lastmelon_plant = math.Round(CurTime())
 		self.lastmelon = math.Round(CurTime())
 		self:SetNWBool("RC",true)
 		self.age=0
-		self.nextmelon=GetConVarNumber("rc_watermelonbg_time")
-		
+		self.nextmelon=GetConVarNumber("rc_watermelonb_time")
     end
      
      function ENT:OnTakeDamage(dmg)
@@ -45,24 +37,20 @@
 			self:Remove()
 		end
 		
-		self.age = self.age + GetConVarNumber("rc_planttime")*GetConVarNumber("rc_speed")
-		if self.age > GetConVarNumber("rc_watermelonbgg_time") and treefCount() <= GetConVarNumber("rc_tree_max") then
-			local melon = ents.Create("watermelon_plant")
-			undo.ReplaceEntity(self.Entity,melon)
-			melon:SetPos(self:GetPos()+Vector(0,0,0))
-			melon:Spawn()
-			melon:SetOwner(self.Owner)
+		self.age = self.age + GetConVarNumber("rc_time")*GetConVarNumber("rc_speed")
+		if self.age > GetConVarNumber("rc_watermelonp_life")then
 			self:Remove()
 		end
 		if self.age > self.nextmelon  and watermelonCount() <= GetConVarNumber("rc_watermelon_max") then
-			self.nextmelon = GetConVarNumber("rc_watermelonbg_time") + self.age
+			self.nextmelon = GetConVarNumber("rc_watermelonb_time") + self.age
 			local melon = ents.Create("watermelon")
-			local dist = GetConVarNumber("rc_watermelong_distance")
-			melon:SetPos(self:GetPos()+Vector(math.random(-dist,dist),math.random(-dist,dist),150))
+			local dist = GetConVarNumber("rc_watermelonb_distance")
+			melon:SetPos(self:GetPos()+Vector(math.random(-dist,dist),math.random(-dist,dist),225))
 			melon:Spawn()
-			melon:SetOwner(self.Owner)
 			self.lastmelon = math.Round(CurTime())
 		end
+		
+		
 		self:NextThink( CurTime() + GetConVarNumber("rc_planttime") )
 		return true
 	end 
