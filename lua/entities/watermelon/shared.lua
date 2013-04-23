@@ -6,7 +6,7 @@
   ENT.Contact = "Pulpgroup"
   ENT.Purpose = "It's a watermelon you idiot"
   ENT.Instructions = "give it to an antlion or headcrab."
-  ENT.Category = "Real_Colonies"
+  ENT.Category = "Realistic_Colonies"
   
   ENT.Spawnable	= true
 ENT.AdminSpawnable = true

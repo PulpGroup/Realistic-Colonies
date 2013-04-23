@@ -6,7 +6,7 @@
   ENT.Contact = "Pulpgroup"
   ENT.Purpose = "It's a zombie you idiot"
   ENT.Instructions = "feed me"
-  ENT.Category = "Real_Colonies"
+  ENT.Category = "Realistic_Colonies"
   
   ENT.Spawnable	= true
 ENT.AdminSpawnable = true

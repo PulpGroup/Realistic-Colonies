@@ -10,13 +10,13 @@
 
 
 	function treefCount()
-		local wms = ents.FindByClass("watermelon_plant")
+		local wms = ents.FindByClass("watermelon_plant_huge")
 		return #wms
 	end
 	 
 	 function ENT:SpawnFunction( ply, tr)
 		local SpawnPos = tr.HitPos
-		local ent = ents.Create( "watermelon_plant_grow" )
+		local ent = ents.Create( "watermelon_plant_big" )
 		ent:SetPos( SpawnPos )
 		ent:Spawn()
 		return ent
@@ -47,7 +47,7 @@
 		
 		self.age = self.age + GetConVarNumber("rc_planttime")*GetConVarNumber("rc_speed")
 		if self.age > GetConVarNumber("rc_watermelonbgg_time") and treefCount() <= GetConVarNumber("rc_tree_max") then
-			local melon = ents.Create("watermelon_plant")
+			local melon = ents.Create("watermelon_plant_huge")
 			undo.ReplaceEntity(self.Entity,melon)
 			melon:SetPos(self:GetPos()+Vector(0,0,0))
 			melon:Spawn()

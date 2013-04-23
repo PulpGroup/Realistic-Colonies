@@ -10,7 +10,7 @@
 	 
 	 function ENT:SpawnFunction( ply, tr)
 		local SpawnPos = tr.HitPos
-		local ent = ents.Create( "watermelon_plant" )
+		local ent = ents.Create( "watermelon_plant_huge" )
 		ent:SetPos( SpawnPos )
 		ent:Spawn()
 		return ent

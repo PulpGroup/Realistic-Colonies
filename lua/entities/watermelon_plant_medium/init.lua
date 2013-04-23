@@ -9,7 +9,7 @@
 	end
 
 	function treebCount()
-		local wms = ents.FindByClass("watermelon_plant_grow")
+		local wms = ents.FindByClass("watermelon_plant_big")
 		return #wms
 	end
 	 
@@ -45,7 +45,7 @@
 		
 		self.age = self.age + GetConVarNumber("rc_planttime")*GetConVarNumber("rc_speed")
 		if self.age > GetConVarNumber("rc_watermelonbgg_time") and treebCount() <= GetConVarNumber("rc_tree_maxh") then
-			local melon = ents.Create("watermelon_plant_grow")
+			local melon = ents.Create("watermelon_plant_big")
 			undo.ReplaceEntity(self.Entity,melon)
 			melon:SetPos(self:GetPos()+Vector(0,0,0))
 			melon:Spawn()
