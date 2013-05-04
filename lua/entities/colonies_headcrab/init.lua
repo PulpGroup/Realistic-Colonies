@@ -39,7 +39,11 @@
 		self.nextegg = GetConVarNumber("rc_headcrab_maturetime") + GetConVarNumber("rc_headcrab_pregtime") + math.Round(math.random(-2,2))
 		self.npc.melon=nil
 		self.hunger = 0
+		self.mhunger = GetConVarNumber("rc_headcrab_mhunger")
 		self.age=0
+		self.npc:SetNWInt("G",0)
+		self.npc:SetNWInt("R",0)
+		self.npc:SetNWInt("Z",5)
 		
 		self.maxhp = 20
 		self.hpregen = 1
@@ -94,7 +98,7 @@
 		self.npc:SetNWInt("HChunger",self.hunger)
 		
 		if( !IsValid(self.npc) ) then
-			local meat = ents.Create("colonies_hmeat")
+			local meat = ents.Create("colonies_headcrabmeat")
 			meat:SetPos(self:GetPos()+Vector(0,0,10010))
 			meat:SetModelScale(self.scale,0);
 			meat:Spawn()
@@ -139,13 +143,13 @@
 			if self.hunger > 40 then
 			
 				--dieing of starvation thing
-				if self.hunger >= GetConVarNumber("rc_headcrab_mhunger") then
+				if self.hunger >= self.mhunger then
 					self.npc:SetHealth(self.npc:Health()-1)
 					if(self.npc:Health() <= 0) then
 						if GetConVarNumber("rc_printevents") == 1 then
 							PrintMessage(HUD_PRINTTALK,"headcrab "..self.name.." died (starvation).")
 						end
-						local meat = ents.Create("colonies_hmeat")
+						local meat = ents.Create("colonies_headcrabmeat")
 						meat:SetPos(self:GetPos()+Vector(0,0,10010))
 						meat:SetModelScale(self.scale,0);
 						meat:Spawn()
@@ -160,7 +164,8 @@
 					local sphents = ents.FindInSphere(self.npc:GetPos(),GetConVarNumber("rc_searchrad"))
 					for i, thent in ipairs(sphents) do
 						if IsValid(thent) and thent:GetPos():Distance(self.npc:GetPos())<closest then
-							if  thent:GetClass() == "watermelon" or thent:GetClass() == "colonies_ameat" or thent:GetClass() == "colonies_hmeat" then
+							if  thent:GetClass() == "watermelon" or thent:GetClass() == "colonies_antlionmeat" or thent:GetClass() == "colonies_headcrabmeat" or thent:GetClass() == "colonies_humanmeat"
+							or thent:GetClass() == "colonies_antlionegg" or thent:GetClass() == "colonies_humanegg" then
 								closest = thent:GetPos():Distance(self.npc:GetPos())
 								self.npc:SetLastPosition(thent:GetPos()+Vector(0,0,0))
 								self.npc:SetSchedule(71)
@@ -182,15 +187,30 @@
 						thent:Remove()
 						self.hunger = self.hunger - 50*thent:GetModelScale()
 						break
-					--eat Ameat
-					elseif thent:GetClass() == "colonies_ameat" then
+					--eat antlionmeat
+					elseif thent:GetClass() == "colonies_antlionmeat" then
 						thent:Remove()
 						self.hunger = self.hunger - 60*thent:GetModelScale()
 						break
-					--eat Hmeat
-					elseif thent:GetClass() == "colonies_hmeat" then
+					--eat headcrabmeat
+					elseif thent:GetClass() == "colonies_headcrabmeat" then
 						thent:Remove()
 						self.hunger = self.hunger - 35*thent:GetModelScale()
+						break
+					--eat humanmeat
+					elseif thent:GetClass() == "colonies_humanmeat" then
+						thent:Remove()
+						self.hunger = self.hunger - 75*thent:GetModelScale()
+						break
+					-- antlion egg
+					elseif thent:GetClass() == "colonies_antlionegg" then
+						thent:Remove()
+						self.hunger = self.hunger - 50*thent:GetModelScale()
+						break
+					-- human egg
+					elseif thent:GetClass() == "colonies_humanegg" then
+						thent:Remove()
+						self.hunger = self.hunger - 50*thent:GetModelScale()
 						break
 					end
 				end
@@ -207,6 +227,9 @@
 				self.scale = 0.1 + (self.age/GetConVarNumber("rc_headcrab_maturetime"))*(0.9)
 				self.npc:SetModelScale(self.scale,GetConVarNumber("rc_time"));
 			end
+			self.npc:SetNWInt("G",255*(self.mhunger-self.hunger)/self.hunger)
+			self.npc:SetNWInt("R",255*self.hunger/self.mhunger)
+			self.npc:SetNWInt("Z",5 + 30*self.scale)
 			self:NextThink( CurTime() + GetConVarNumber("rc_time") )
 			return true
 		end

@@ -3,14 +3,9 @@
       
      include('shared.lua')
 
-	function treesCount()
-		local wms = ents.FindByClass("watermelon_plant_small")
-		return #wms
-	end
-
 	 function ENT:SpawnFunction( ply, tr)
 		local SpawnPos = tr.HitPos
-		local ent = ents.Create( "watermelon" )
+		local ent = ents.Create( "colonies_headcrabmeat" )
 		ent:SetPos( SpawnPos + Vector(0,0,15) )
 		ent:Spawn()
 		return ent
@@ -19,37 +14,30 @@
       
     function ENT:Initialize()
 		
-		self:SetModel("models/props_junk/watermelon01.mdl")
+		self:SetModel("models/gibs/Antlion_gib_small_1.mdl")
 		self:PhysicsInit( SOLID_VPHYSICS ) // Make us work with physics,
-		self:SetMoveType( SOLID_VPHYSICS ) // after all, gmod is a physics
+		self:SetMoveType( MOVETYPE_VPHYSICS ) // after all, gmod is a physics
 		self:SetSolid( SOLID_VPHYSICS ) // Toolbox 
 		self:GetPhysicsObject():Wake()
-		self:GetPhysicsObject():SetMass( 1 ) 
+		self:SetColor(255,0,0,255)
 		self.lastmelon = math.Round(CurTime())
-		self.age=0
+		self:SetNWBool("RC",true)
     end
 
 	function ENT:Think()
 		if GetConVarNumber("rc_remove")==1 then 
 			self:Remove()
 		end
-		self.age = self.age + GetConVarNumber("rc_planttime")*GetConVarNumber("rc_speed")
-		if self.age > GetConVarNumber("rc_watermelon_time") and treesCount() <= GetConVarNumber("rc_tree_maxs") then
-			local melon = ents.Create("watermelon_plant_small")
-			undo.ReplaceEntity(self.Entity,melon)
-			melon:SetPos(self:GetPos()+Vector(0,0,-5))
-			melon:Spawn()
-			melon:SetOwner(self.Owner)
+		if math.Round(CurTime()) > self.lastmelon + GetConVarNumber("rc_meat_time") then
 			self:Remove()
 		end
-		
-		self:NextThink( CurTime() + GetConVarNumber("rc_planttime") )
+			
+		self:NextThink( CurTime() + GetConVarNumber("rc_time") )
 		return true
 	end
-	
      
      function ENT:OnTakeDamage(dmg)
-		self:Remove()
+     self:Remove()
      end
 	 
 	    

@@ -5,7 +5,7 @@
 
 	 function ENT:SpawnFunction( ply, tr)
 		local SpawnPos = tr.HitPos
-		local ent = ents.Create( "colonies_hmeat" )
+		local ent = ents.Create( "colonies_antlionmeat" )
 		ent:SetPos( SpawnPos + Vector(0,0,15) )
 		ent:Spawn()
 		return ent
@@ -14,7 +14,7 @@
       
     function ENT:Initialize()
 		
-		self:SetModel("models/gibs/Antlion_gib_small_1.mdl")
+		self:SetModel("models/gibs/Antlion_gib_large_3.mdl")
 		self:PhysicsInit( SOLID_VPHYSICS ) // Make us work with physics,
 		self:SetMoveType( MOVETYPE_VPHYSICS ) // after all, gmod is a physics
 		self:SetSolid( SOLID_VPHYSICS ) // Toolbox 
@@ -37,7 +37,7 @@
 	end
      
      function ENT:OnTakeDamage(dmg)
-     self:Remove()
+		self:Remove()
      end
 	 
 	    
@@ -48,5 +48,5 @@
 
 
 	function ENT:OnRemove()
-	self:Remove()
+		self:Remove()
 	end

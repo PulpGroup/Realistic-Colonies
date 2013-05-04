@@ -6,6 +6,34 @@ Todo :
 - realistic trees + good tree names.
 
 What is new :
+V 2.0 pre release 3 :
+Addons itself :
+- (Changes) The entities tab is now 'Realistic_Colonies' instead of 'Real_Colonies'.
+
+- (Added) human.
+- (Added)human egg.
+- (Added)human meat.
+- Human can't eat human meat.
+
+- (Changes) Zombies egg look like human egg.
+- (Changes)Zombies are now droping human meat + headcrab meat instead of 3 headcrab meat.
+- (Changes)Zombies may now spawn from combat.
+- (Changes)Zombies now have there own hunger convar.
+
+- (Changes) Melon are now killable again (i'm trying a way so they explode when damaged.)
+
+- (Changes) Removed a gui thing.
+- (Changes) Optimized gui thing.
+- (Changes) Client side vars is now clientside xD
+
+- (Changes) Npcs may now eat human meat.
+- (Changes) Npcs may now eat others npc's egg.
+
+Code side :
+- (Changes) Meat now have correct name.
+- (Changes) Plant now have correct name
+
+
 V 2.0 pre release 2 :
 - melon are not colony killer :).
 - information writen over npc head are now related to their scale.

@@ -5,7 +5,7 @@
 	 
 	 function ENT:SpawnFunction( ply, tr)
 		local SpawnPos = tr.HitPos + Vector( 0, 0, 15) 
-		local ent = ents.Create( "colonies_zombieegg" )
+		local ent = ents.Create( "colonies_humanegg" )
 		ent:SetPos( SpawnPos )
 		ent:Spawn()
 		return ent
@@ -21,7 +21,6 @@
 		self:GetPhysicsObject():Wake()
 		self.laid = math.Round(CurTime())
 		self:SetNWBool("RC",true)
-		self:SetColor(Color(255,0,0,255))
 		
     end
      
@@ -43,10 +42,10 @@
 		if GetConVarNumber("rc_remove")==1 then 
 			self:Remove()
 		end
-		if math.Round(CurTime()) > self.laid + GetConVarNumber("rc_headcrab_eggtime") then
-		
-			if zombieCount() < GetConVarNumber("rc_zombie_max") then
-				local heady = ents.Create("colonies_zombie")
+		if math.Round(CurTime()) > self.laid + GetConVarNumber("rc_human_eggtime") then
+			
+			if humanCount() < GetConVarNumber("rc_human_max") then
+				local heady = ents.Create("colonies_human")
 				undo.ReplaceEntity(self.Entity,heady)
 		
 				heady:SetPos(self:GetPos()+Vector(0,0,15))
@@ -55,6 +54,7 @@
 			end
 			
 			self:Remove()
+		
 		end
 		
 		self:NextThink( CurTime() + GetConVarNumber("rc_time") )

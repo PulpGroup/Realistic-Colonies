@@ -28,7 +28,7 @@ end
 
 -- Savoir si une entity est un npc de RC
 function rc_api.isNpc(ent)
-	if ( ent:GetClass() == "npc_headcrab" or ent:GetClass() == "npc_headcrab_black" or ent:GetClass() == "npc_zombie" or ent:GetClass() == "npc_antlion") then
+	if ( ent:GetClass() == "npc_headcrab" or ent:GetClass() == "npc_headcrab_black" or ent:GetClass() == "npc_zombie" or ent:GetClass() == "npc_antlion" or ent:GetClass() == "npc_citizen") then
 		if( ent:GetNWBool("HC") == true ) then
 			return true;
 		else

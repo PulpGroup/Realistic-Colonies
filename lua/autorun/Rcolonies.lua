@@ -84,7 +84,6 @@ AddCSLuaFile("Rcoloniesclient.lua")
 CreateConVar("rc_printevents",1, {FCVAR_NOTIFY}) --Wether or not to print info on deaths
 CreateConVar("rc_hateplayers",0, {FCVAR_NOTIFY}) --Makes colonies guy hate player
 CreateConVar("rc_remove",0, {FCVAR_NOTIFY}) --clean up colonies stuff ! / not recomanded to use
-CreateClientConVar("rc_view", 768, true, false) --distance of view.
 CreateConVar("rc_searchrad",1024, {FCVAR_NOTIFY}) -- Radius to search for food
 
 CreateConVar("rc_time",1, {FCVAR_NOTIFY}) -- Delay between each execution of npcs stuff.
@@ -124,14 +123,23 @@ CreateConVar("rc_antlion_lifespan",285, {FCVAR_NOTIFY}) -- Lifespan of antlion.
 CreateConVar("rc_antlion_hunger",1, {FCVAR_NOTIFY}) -- How fast should the hunger rise.
 CreateConVar("rc_antlion_mhunger",95, {FCVAR_NOTIFY}) -- The max hunger before npc die of starvation
 CreateConVar("rc_antlion_eggtime",20, {FCVAR_NOTIFY}) -- Time needed for the egg to break.
-CreateConVar("rc_antlion_maturetime",55, {FCVAR_NOTIFY}) -- Time needed for an antlino to become adult
+CreateConVar("rc_antlion_maturetime",55, {FCVAR_NOTIFY}) -- Time needed for an antlion to become adult
 CreateConVar("rc_antlion_pregtime",95, {FCVAR_NOTIFY}) -- Time between each egg lay.
-CreateConVar("rc_antlion_max",35, {FCVAR_NOTIFY}) --Maximum antlion population
+CreateConVar("rc_antlion_max",50, {FCVAR_NOTIFY}) --Maximum antlion population
+
+--Human Vars
+CreateConVar("rc_human_lifespan",1000, {FCVAR_NOTIFY}) -- Lifespan of human.
+CreateConVar("rc_human_hunger",1, {FCVAR_NOTIFY}) -- How fast should the hunger rise.
+CreateConVar("rc_human_mhunger",125, {FCVAR_NOTIFY}) -- The max hunger before npc die of starvation
+CreateConVar("rc_human_eggtime",90, {FCVAR_NOTIFY}) -- Time needed for the egg to break.
+CreateConVar("rc_human_maturetime",180, {FCVAR_NOTIFY}) -- Time needed for an human to become adult
+CreateConVar("rc_human_pregtime",200, {FCVAR_NOTIFY}) -- Time between each egg lay.
+CreateConVar("rc_human_max",40, {FCVAR_NOTIFY}) --Maximum human population
 
 --Headcrab Vars
 CreateConVar("rc_zombie_lifespan",395, {FCVAR_NOTIFY}) -- Lifespan of zombies
 CreateConVar("rc_zombie_hunger",1, {FCVAR_NOTIFY}) -- How quickly the hunger increases
-CreateConVar("rc_zombie_max",25, {FCVAR_NOTIFY}) --Maximum zombie population
+CreateConVar("rc_zombie_max",35, {FCVAR_NOTIFY}) --Maximum zombie population
 CreateConVar("rc_zombie_mhunger",115, {FCVAR_NOTIFY}) -- Maximum hunger of zombies.
 CreateConVar("rc_zombie_maturetime",65, {FCVAR_NOTIFY}) --How long before the zombie matures
 CreateConVar("rc_zombie_pregtime",65, {FCVAR_NOTIFY}) --How long between each egg
@@ -143,7 +151,7 @@ CreateConVar("rc_headcrab_mhunger",75, {FCVAR_NOTIFY}) -- Maximum hunger of head
 CreateConVar("rc_headcrab_eggtime",10, {FCVAR_NOTIFY}) --How long before egg hatches
 CreateConVar("rc_headcrab_maturetime",30, {FCVAR_NOTIFY}) --How long before the Headcrab matures
 CreateConVar("rc_headcrab_pregtime",65, {FCVAR_NOTIFY}) --How long between each egg
-CreateConVar("rc_headcrab_max",65, {FCVAR_NOTIFY}) --Maximum headcrab population
+CreateConVar("rc_headcrab_max",95, {FCVAR_NOTIFY}) --Maximum headcrab population
 CreateConVar("rc_headcrab_tozombie",1, {FCVAR_NOTIFY}) --Should Headcrabs spawn zombies when they kill citizens
 
 
