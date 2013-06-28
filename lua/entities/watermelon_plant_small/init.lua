@@ -42,25 +42,28 @@
 			self:Remove()
 		end
 		
-		self.age = self.age + GetConVarNumber("rc_planttime")*GetConVarNumber("rc_speed")
-		if self.age > GetConVarNumber("rc_watermelonbgg_time") and treemCount() <= GetConVarNumber("rc_tree_maxm") then
-			local melon = ents.Create("watermelon_plant_medium")
-			undo.ReplaceEntity(self.Entity,melon)
-			melon:SetPos(self:GetPos()+Vector(0,0,0))
-			melon:Spawn()
-			melon:SetOwner(self.Owner)
+		if self.age > GetConVarNumber("rc_watermelonbgg_time") then
+			local random = math.Round(math.random(0,3))
+			if random == 3 and treemCount() <= GetConVarNumber("rc_tree_maxm") then
+				local melon = ents.Create("watermelon_plant_medium")
+				undo.ReplaceEntity(self.Entity,melon)
+				melon:SetPos(self:GetPos())
+				melon:Spawn()
+				melon:SetOwner(self.Owner)
+			end
 			self:Remove()
 		end
 		if self.age > self.nextmelon  and watermelonCount() <= GetConVarNumber("rc_watermelon_max") then
 			self.nextmelon = GetConVarNumber("rc_watermelonbs_time") + self.age
 			local melon = ents.Create("watermelon")
 			local dist = GetConVarNumber("rc_watermelons_distance")
-			melon:SetPos(self:GetPos()+Vector(math.random(-dist,dist),math.random(-dist,dist),75))
+			melon:SetPos(self:GetPos()+Vector(math.random(-dist,dist),math.random(-dist,dist),0))
 			melon:Spawn()
 			melon:SetOwner(self.Owner)
 			self.lastmelon = math.Round(CurTime())
 		end
 		
-		self:NextThink( CurTime() + GetConVarNumber("rc_planttime") )
+		self.age = self.age + GetConVarNumber("rc_watermelonbs_time")
+		self:NextThink( CurTime() + GetConVarNumber("rc_watermelonbs_time")/GetConVarNumber("rc_speed") )
 		return true
 	end 

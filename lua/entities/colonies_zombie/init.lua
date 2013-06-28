@@ -140,7 +140,7 @@
 				self.npc:SetColor( Color(255,255,255,255) )
 			end
 
-			if self.age > self.nextegg and zombieCount() <= GetConVarNumber("rc_zombie_max") then
+			if self.age > self.nextegg and zombieCount() <= GetConVarNumber("rc_zombie_max") and self.hunger <= self.mhunger then
 				local rand = math.Round(math.random(1,1.6))
 				for i=1,rand do
 					local egg = ents.Create("colonies_zombieegg")
@@ -156,7 +156,7 @@
 			
 				--dieing of starvation thing
 				if self.hunger >= self.mhunger then
-					self.npc:SetHealth(self.npc:Health()-1)
+					self.npc:SetHealth(self.npc:Health()-1*GetConVarNumber("rc_speed")*GetConVarNumber("rc_time"))
 					if(self.npc:Health() <= 0) then
 						if GetConVarNumber("rc_printevents") == 1 then
 							PrintMessage(HUD_PRINTTALK,"zombie "..self.name.." died (starvation).")
@@ -240,7 +240,7 @@
 				end
 			else
 				if self.npc:Health() < self.maxhp then
-					self.npc:SetHealth(self.npc:Health()+self.hpregen)
+					self.npc:SetHealth(self.npc:Health()+self.hpregen*GetConVarNumber("rc_speed")*GetConVarNumber("rc_time"))
 				end
 			end
 			self.npc:SetNWInt("HChealth", self.npc:Health() );

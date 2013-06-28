@@ -43,7 +43,8 @@
 		if GetConVarNumber("rc_remove")==1 then 
 			self:Remove()
 		end
-		if math.Round(CurTime()) > self.laid + GetConVarNumber("rc_antlion_eggtime") then
+		
+		if math.Round(CurTime()) > self.laid + GetConVarNumber("rc_antlion_eggtime")/GetConVarNumber("rc_speed") then
 			if antlionCount() < GetConVarNumber("rc_antlion_max") then
 				local heady = ents.Create("colonies_antlion")
 				undo.ReplaceEntity(self.Entity,heady)
@@ -54,6 +55,6 @@
 			self:Remove()
 		end
 		
-		self:NextThink( CurTime() + GetConVarNumber("rc_time") )
+		self:NextThink( CurTime() + GetConVarNumber("rc_antlion_eggtime")/GetConVarNumber("rc_speed") )
 		return true
 	end 

@@ -42,7 +42,7 @@
 		if GetConVarNumber("rc_remove")==1 then 
 			self:Remove()
 		end
-		if math.Round(CurTime()) > self.laid + GetConVarNumber("rc_human_eggtime") then
+		if math.Round(CurTime()) > self.laid + GetConVarNumber("rc_human_eggtime")/GetConVarNumber("rc_speed") then
 			
 			if humanCount() < GetConVarNumber("rc_human_max") then
 				local heady = ents.Create("colonies_human")
@@ -57,6 +57,6 @@
 		
 		end
 		
-		self:NextThink( CurTime() + GetConVarNumber("rc_time") )
+		self:NextThink( CurTime() + GetConVarNumber("rc_antlion_eggtime")/GetConVarNumber("rc_speed") )
 		return true
 	end 

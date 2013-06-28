@@ -37,7 +37,6 @@
 			self:Remove()
 		end
 		
-		self.age = self.age + GetConVarNumber("rc_time")*GetConVarNumber("rc_speed")
 		if self.age > GetConVarNumber("rc_watermelonp_life")then
 			self:Remove()
 		end
@@ -45,12 +44,13 @@
 			self.nextmelon = GetConVarNumber("rc_watermelonb_time") + self.age
 			local melon = ents.Create("watermelon")
 			local dist = GetConVarNumber("rc_watermelonb_distance")
-			melon:SetPos(self:GetPos()+Vector(math.random(-dist,dist),math.random(-dist,dist),225))
+			melon:SetPos(self:GetPos()+Vector(math.random(-dist,dist),math.random(-dist,dist),0))
 			melon:Spawn()
+			melon:SetOwner(self.Owner)
 			self.lastmelon = math.Round(CurTime())
 		end
 		
-		
-		self:NextThink( CurTime() + GetConVarNumber("rc_planttime") )
+		self.age = self.age + GetConVarNumber("rc_watermelonb_time")
+		self:NextThink( CurTime() + GetConVarNumber("rc_watermelonb_time")/GetConVarNumber("rc_speed") )
 		return true
 	end 

@@ -6,32 +6,51 @@ Todo :
 - realistic trees + good tree names.
 
 What is new :
-V 2.0 pre release 3 :
-Addons itself :
-- (Changes) The entities tab is now 'Realistic_Colonies' instead of 'Real_Colonies'.
 
-- (Added) human.
-- (Added)human egg.
-- (Added)human meat.
+
+
+V 2.0 pre release 4 :
+- New trees stuff :
+-- Randoming wich tree have to grow up
+-- Increased melon spawning zone.
+-- Tree limit increased
+-- Tree are living older
+-- Tree are spawning melon faster
+-- Melon and tree are removing if the limit of the next tree is hit.
+- Optimisation of food and trees,
+- Bug fix related to rc_speed and rc_time (egg, meet, healing of npc)
+- Melon now spawn on the ground.
+- Npc can't lay egg when they are starving.
+- some Balance
+
+
+
+V 2.0 pre release 3 :
+- The entities tab is now 'Realistic_Colonies' instead of 'Real_Colonies'.
+
+- Adding human.
+- Adding human egg.
+- Adding human meat.
 - Human can't eat human meat.
 
-- (Changes) Zombies egg look like human egg.
-- (Changes)Zombies are now droping human meat + headcrab meat instead of 3 headcrab meat.
-- (Changes)Zombies may now spawn from combat.
-- (Changes)Zombies now have there own hunger convar.
+- Zombies egg look like human egg.
+- Zombies are now droping human meat + headcrab meat instead of 3 headcrab meat.
+- Zombies may now spawn from combat.
+- Zombies now have there own hunger convar.
 
-- (Changes) Melon are now killable again (i'm trying a way so they explode when damaged.)
+- Melon are now killable again (i'm trying a way so they explode when damaged.)
 
-- (Changes) Removed a gui thing.
-- (Changes) Optimized gui thing.
-- (Changes) Client side vars is now clientside xD
+- Removed a gui thing.
+- Optimized gui thing.
+- Client side vars is now clientside xD
 
-- (Changes) Npcs may now eat human meat.
-- (Changes) Npcs may now eat others npc's egg.
+- Npcs may now eat human meat.
+- Npcs may now eat others npc's egg.
 
 Code side :
-- (Changes) Meat now have correct name.
-- (Changes) Plant now have correct name
+- Meat now have correct name.
+- Plant now have correct name
+
 
 
 V 2.0 pre release 2 :

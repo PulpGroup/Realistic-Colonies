@@ -30,21 +30,27 @@
     end
 
 	function ENT:Think()
-		if GetConVarNumber("rc_remove")==1 then 
-			self:Remove()
-		end
-		self.age = self.age + GetConVarNumber("rc_planttime")*GetConVarNumber("rc_speed")
-		if self.age > GetConVarNumber("rc_watermelon_time") and treesCount() <= GetConVarNumber("rc_tree_maxs") then
-			local melon = ents.Create("watermelon_plant_small")
-			undo.ReplaceEntity(self.Entity,melon)
-			melon:SetPos(self:GetPos()+Vector(0,0,-5))
-			melon:Spawn()
-			melon:SetOwner(self.Owner)
-			self:Remove()
-		end
+		if IsValid(self) then
+			if GetConVarNumber("rc_remove")==1 then 
+				self:Remove()
+			end
 		
-		self:NextThink( CurTime() + GetConVarNumber("rc_planttime") )
-		return true
+			if self.age > GetConVarNumber("rc_watermelon_time") then
+				local random = math.Round(math.random(0,2))
+				if random == 2 and treesCount() <= GetConVarNumber("rc_tree_maxs") then
+					local melon = ents.Create("watermelon_plant_small")
+					undo.ReplaceEntity(self.Entity,melon)
+					melon:SetPos(self:GetPos())
+					melon:Spawn()
+					melon:SetOwner(self.Owner)
+				end
+				self:Remove()
+			else
+				self.age = self.age + GetConVarNumber("rc_watermelon_time")
+				self:NextThink( CurTime() + GetConVarNumber("rc_watermelon_time")/GetConVarNumber("rc_speed") )
+				return true
+			end
+		end
 	end
 	
      
