@@ -1,0 +1,11 @@
+{
+	"title"		:	"Realistic Colonies",
+	"type"		:	"npc",
+	"tags"		:	[ "fun", "realism" ],
+	"ignore"	:
+	[
+		"*.psd",
+		"*.vcproj",
+		"*.svn*"
+	]
+}
