@@ -113,7 +113,7 @@
 			if self.age >  GetConVarNumber("rc_human_lifespan") then
 				self:Remove()
 				if GetConVarNumber("rc_printevents") == 1 then
-					PrintMessage(HUD_PRINTTALK,"headcrab "..self.name.." died (age).")
+					PrintMessage(HUD_PRINTTALK,"human "..self.name.." died (age).")
 				end
 			end
 
@@ -137,7 +137,7 @@
 					self.npc:SetHealth(self.npc:Health()-1*GetConVarNumber("rc_speed")*GetConVarNumber("rc_time"))
 					if(self.npc:Health() <= 0) then
 						if GetConVarNumber("rc_printevents") == 1 then
-							PrintMessage(HUD_PRINTTALK,"headcrab "..self.name.." died (starvation).")
+							PrintMessage(HUD_PRINTTALK,"human "..self.name.." died (starvation).")
 						end
 						local meat = ents.Create("colonies_humanmeat")
 						meat:SetPos(self:GetPos()+Vector(0,0,10010))

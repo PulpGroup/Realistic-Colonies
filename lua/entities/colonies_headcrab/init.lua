@@ -62,7 +62,7 @@
 		if GetConVarNumber("rc_spreadthelove") == 1 then
 			self.npc:AddRelationship("npc_antlion D_NU 999")
 			self.npc:AddRelationship("npc_headcrab D_NU 999")
-			self.npc:AddRelationship("npc_npc_headcrab_black D_NU 999")
+			self.npc:AddRelationship("npc_headcrab_black D_NU 999")
 			self.npc:AddRelationship("npc_zombie D_NU 999")
 		end
 		
@@ -110,8 +110,10 @@
 
 			if GetConVarNumber("rc_spreadthelove") == 0 and self.hunger>GetConVarNumber("rc_headcrab_mhunger")*0.70 then
 				self.npc:AddRelationship("npc_headcrab D_HT 999")
+				self.npc:AddRelationship("npc_headcrab_black D_HT 999")
 			else
 				self.npc:AddRelationship("npc_headcrab D_LI 999")
+				self.npc:AddRelationship("npc_headcrab_black D_LI 999")
 			end
 			
 			-- POS for the meat

@@ -8,7 +8,8 @@
 	end
 	
 	local hctypes = {
-		"npc_zombie"
+		"npc_zombie",
+		"npc_zombie_torso"
 	}
 	
 	function ENT:SpawnFunction( ply, tr)
@@ -118,11 +119,11 @@
 
 			if GetConVarNumber("rc_spreadthelove") == 0 and self.hunger>GetConVarNumber("rc_zombie_mhunger")*0.70 then
 				self.npc:AddRelationship("npc_headcrab D_HT 999")
-				self.npc:AddRelationship("npc_npc_headcrab_black D_HT 999")
+				self.npc:AddRelationship("npc_headcrab_black D_HT 999")
 				self.npc:AddRelationship("npc_zombie D_HT 999")
 			else
 				self.npc:AddRelationship("npc_headcrab D_LI 999")
-				self.npc:AddRelationship("npc_npc_headcrab_black D_LI 999")
+				self.npc:AddRelationship("npc_headcrab_black D_LI 999")
 				self.npc:AddRelationship("npc_zombie D_LI 999")
 			end
 			
