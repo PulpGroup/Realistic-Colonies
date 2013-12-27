@@ -28,7 +28,7 @@ end
 
 -- Savoir si une entity est un npc de RC
 function rc_api.isNpc(ent)
-	if ( ent:GetClass() == "npc_headcrab" or ent:GetClass() == "npc_headcrab_black" or ent:GetClass() == "npc_zombie" or ent:GetClass() == "npc_antlion" or ent:GetClass() == "npc_citizen") then
+	if ( ent:GetClass() == "npc_headcrab" or ent:GetClass() == "npc_headcrab_black" or ent:GetClass() == "npc_zombie" or ent:GetClass() == "npc_zombie_torso" or ent:GetClass() == "npc_antlion" or ent:GetClass() == "npc_citizen") then
 		if( ent:GetNWBool("HC") == true ) then
 			return true;
 		else
@@ -42,7 +42,7 @@ end
 -- Savoir si une entity est un zombie/headcrab
 function rc_api.isHeadcrab(ent)
 	if ( rc_api.isNpc(ent) ) then
-		if( ent:GetClass() == "npc_headcrab" or ent:GetClass() == "npc_headcrab_black" or ent:GetClass() == "npc_zombie" ) then
+		if( ent:GetClass() == "npc_headcrab" or ent:GetClass() == "npc_headcrab_black" or ent:GetClass() == "npc_zombie" or ent:GetClass() == "npc_zombie_torso" ) then
 			return true;
 		else
 			return false;
