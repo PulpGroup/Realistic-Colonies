@@ -2,7 +2,7 @@
 --=	Realistic      =--
 --=	Colonies       =--
 --======================--
-AddCSLuaFile("Rcoloniesclient.lua")
+AddCSLuaFile("rcoloniesclient.lua")
 
 	 
 	coloniesnames = {
