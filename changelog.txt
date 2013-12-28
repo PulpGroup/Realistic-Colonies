@@ -8,6 +8,13 @@ Todo :
 What is new :
 
 
+V 2.0 pre release 5 :
+(added) Torso zombies.
+
+(fixes) Human death message are not showing as headcrab's ones.
+(fixes) Headcrab are now attacking black headcrab when to hungry.
+
+(changes) New addons format, so I can finally upload it to workshop ;).
 
 V 2.0 pre release 4 :
 - New trees stuff :

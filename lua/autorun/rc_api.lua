@@ -16,7 +16,7 @@ end
 -- Savoir si une entity est de la nourriture
 function rc_api.isFood(ent)
 	if ( rc_api.isRC(ent) ) then
-		if  ent:GetClass() == "watermelon" or ent:GetClass() == "colonies_hmeat" or ent:GetClass() == "colonies_ameat" then
+		if  ent:GetClass() == "watermelon" or ent:GetClass() == "colonies_humanmeat" or ent:GetClass() == "colonies_hmeat" or ent:GetClass() == "colonies_ameat" then
 			return true;
 		else
 			return false;
