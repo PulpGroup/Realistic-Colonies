@@ -1,0 +1,6 @@
+"UnlitGeneric"
+{
+    "$basetexture" "vgui/entities/colonies_headcrab"
+	"$vertexalpha" 1
+	"$vertexcolor" 1
+}

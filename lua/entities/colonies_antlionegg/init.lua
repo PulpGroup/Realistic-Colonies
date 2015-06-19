@@ -22,12 +22,15 @@
 		self:SetMaterial("models/debug/debugwhite")
 		self.laid = math.Round(CurTime())
 		self:SetNWBool("RC",true)
+		self:SetNWBool("Eatable",true)
+		self:SetNWString("rc_class","antlion")
+		self:SetNWInt("Food",GetConVarNumber("rc_food_antlion_egg"))
 		
     end
      
-     function ENT:OnTakeDamage(dmg)
-     self:Remove()
-     end
+    function ENT:OnTakeDamage(dmg)
+		self:Remove()
+    end
 	 
 	    
 	/*---------------------------------------------------------

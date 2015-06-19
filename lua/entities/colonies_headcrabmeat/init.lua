@@ -22,6 +22,9 @@
 		self:SetColor(255,0,0,255)
 		self.lastmelon = math.Round(CurTime())
 		self:SetNWBool("RC",true)
+		self:SetNWBool("Eatable",true)
+		self:SetNWString("rc_class","headcrab")
+		self:SetNWInt("Food",GetConVarNumber("rc_food_headcrab_meat"))
     end
 
 	function ENT:Think()
@@ -36,9 +39,9 @@
 		return true
 	end
      
-     function ENT:OnTakeDamage(dmg)
-     self:Remove()
-     end
+	function ENT:OnTakeDamage(dmg)
+		self:Remove()
+	end
 	 
 	    
 	/*---------------------------------------------------------

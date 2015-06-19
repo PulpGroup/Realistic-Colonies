@@ -22,7 +22,9 @@
 		self:SetMaterial("models/debug/debugwhite")
 		self.laid = math.Round(CurTime())
 		self:SetNWBool("RC",true)
-		
+		self:SetNWBool("Eatable",true)
+		self:SetNWString("rc_class","headcrab")
+		self:SetNWInt("Food",GetConVarNumber("rc_food_headcrab_egg"))
     end
      
      function ENT:OnTakeDamage(dmg)

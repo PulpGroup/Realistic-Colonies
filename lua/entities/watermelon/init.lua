@@ -26,6 +26,10 @@
 		self:GetPhysicsObject():Wake()
 		self:GetPhysicsObject():SetMass( 1 ) 
 		self.lastmelon = math.Round(CurTime())
+		self:SetNWBool("RC",true)
+		self:SetNWBool("Eatable",true)
+		self:SetNWString("rc_class","plant")
+		self:SetNWInt("Food",GetConVarNumber("rc_food_melon"))
 		self.age=0
     end
 

@@ -22,11 +22,9 @@
 		self:PhysicsInit( SOLID_VPHYSICS ) // Make us work with physics,
 		self:SetSolid( SOLID_VPHYSICS ) // Toolbox
 		self:GetPhysicsObject():EnableMotion(false)
-		self.lastmelon_plant = math.Round(CurTime())
-		self.lastmelon = math.Round(CurTime())
 		self:SetNWBool("RC",true)
 		self.age=0
-		self.nextmelon=GetConVarNumber("rc_watermelonb_time")
+		self.nextmelon=GetConVarNumber("rc_watermelonh_time")
     end
      
      function ENT:OnTakeDamage(dmg)
@@ -37,20 +35,20 @@
 			self:Remove()
 		end
 		
-		if self.age > GetConVarNumber("rc_watermelonp_life")then
+		if self.age > GetConVarNumber("rc_watermelonh_life")then
 			self:Remove()
 		end
 		if self.age > self.nextmelon  and watermelonCount() <= GetConVarNumber("rc_watermelon_max") then
-			self.nextmelon = GetConVarNumber("rc_watermelonb_time") + self.age
+			self.nextmelon = GetConVarNumber("rc_watermelonh_time") + self.age
 			local melon = ents.Create("watermelon")
-			local dist = GetConVarNumber("rc_watermelonb_distance")
-			melon:SetPos(self:GetPos()+Vector(math.random(-dist,dist),math.random(-dist,dist),0))
+			local dist = GetConVarNumber("rc_watermelonh_distance")
+			melon:SetPos(self:GetPos()+Vector(math.random(-dist,dist),math.random(-dist,dist),120))
 			melon:Spawn()
 			melon:SetOwner(self.Owner)
-			self.lastmelon = math.Round(CurTime())
+			melon:SetModelScale(GetConVarNumber("rc_watermelonh_size")/100,0);
 		end
 		
-		self.age = self.age + GetConVarNumber("rc_watermelonb_time")
-		self:NextThink( CurTime() + GetConVarNumber("rc_watermelonb_time")/GetConVarNumber("rc_speed") )
+		self.age = self.age + 1
+		self:NextThink( CurTime() + GetConVarNumber("rc_planttime") )
 		return true
 	end 

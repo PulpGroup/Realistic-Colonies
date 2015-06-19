@@ -46,6 +46,7 @@
 		self.scale = 0.1
 		
 		self.npc:SetNWString("HCname",self.name)
+		self.npc:SetNWString("rc_class","antlion")
 		self.npc:SetNWBool("HC",true)
 		self.npc:SetNWBool("RC",true)
 		self.npc:SetNWBool("isSelected",false)
@@ -56,10 +57,11 @@
 		end
 		
 		if GetConVarNumber("rc_spreadthelove") == 1 then
+			self.npc:AddRelationship("npc_antlion D_NU 999")
 			self.npc:AddRelationship("npc_headcrab D_NU 999")
 			self.npc:AddRelationship("npc_headcrab_black D_NU 999")
 			self.npc:AddRelationship("npc_zombie D_NU 999")
-			self.npc:AddRelationship("npc_antlion D_NU 999")
+			self.npc:AddRelationship("npc_citizen D_NU 999")
 		end
 		
 		self.npc:SetModelScale(self.scale,0);
@@ -87,11 +89,8 @@
     
 	function ENT:Think()
 	
-		self.age = self.age+ GetConVarNumber("rc_time")*GetConVarNumber("rc_speed")
-		self.npc:SetNWInt("HCage",self.age)
-	
+		self.age = self.age + GetConVarNumber("rc_time")*GetConVarNumber("rc_speed")
 		self.hunger = self.hunger + GetConVarNumber("rc_antlion_hunger")*GetConVarNumber("rc_time")*GetConVarNumber("rc_speed")
-		self.npc:SetNWInt("HChunger",self.hunger)
 		
 		if( !IsValid(self.npc) ) then
 			local meat = ents.Create("colonies_antlionmeat")
@@ -104,7 +103,7 @@
 				self:Remove()
 			end
 
-			if GetConVarNumber("rc_spreadthelove") == 0 and self.hunger>GetConVarNumber("rc_antlion_mhunger")*0.70 then
+			if GetConVarNumber("rc_spreadthelove") == 0 and self.hunger>GetConVarNumber("rc_antlion_mhunger")*GetConVarNumber("rc_veryhungry")/100 then
 				self.npc:AddRelationship("npc_antlion D_HT 999")
 			else
 				self.npc:AddRelationship("npc_antlion D_LI 999")
@@ -113,7 +112,7 @@
 			-- POS for the meat
 			self:SetPos(self.npc:GetPos()-Vector(0,0,10000))
 
-			if self.age >  GetConVarNumber("rc_antlion_lifespan") then
+			if self.age > GetConVarNumber("rc_antlion_lifespan") then
 				self:Remove()
 				if GetConVarNumber("rc_printevents") == 1 then
 					PrintMessage(HUD_PRINTTALK,"Antlion "..self.name.." died (age).")
@@ -136,7 +135,7 @@
 			
 			
 			--eating script
-			if self.hunger > 40 then
+			if self.hunger>GetConVarNumber("rc_antlion_mhunger")*GetConVarNumber("rc_hungry")/100 then
 			
 				--dieing of starvation thing
 				if self.hunger >= self.mhunger then
@@ -153,81 +152,40 @@
 					end
 				end
 				
-				if self.hunger>45 then
-				
-					--seaching food stuff
-					local closest = GetConVarNumber("rc_searchrad")
-					local sphents = ents.FindInSphere(self.npc:GetPos(),GetConVarNumber("rc_searchrad"))
-					for i, thent in ipairs(sphents) do
-						if IsValid(thent) and thent:GetPos():Distance(self.npc:GetPos())<closest then
-							if  thent:GetClass() == "watermelon" or thent:GetClass() == "colonies_antlionmeat" or thent:GetClass() == "colonies_headcrabmeat"  or thent:GetClass() == "colonies_humanmeat"
-							or thent:GetClass() == "colonies_zombieegg" or thent:GetClass() == "colonies_headcrabegg" or thent:GetClass() == "colonies_humanegg" then
-								closest = thent:GetPos():Distance(self.npc:GetPos())
-								self.npc:SetLastPosition(thent:GetPos()+Vector(0,0,0))
-								self.npc:SetSchedule(71)
-								self.npc.melon = thent
-							end
+				if IsValid(self.npc.melon) then
+					self.npc:SetLastPosition(self.npc.melon:GetPos()+Vector(0,0,0))
+					self.npc:SetSchedule(71)
+					-- eating stuff
+					if (self.npc:GetPos():Distance(self.npc.melon:GetPos()) < 32) then
+						self.npc.melon:Remove()
+						self.hunger = self.hunger - self.npc.melon:GetNWInt("Food",0)*self.npc.melon:GetModelScale()
+						if self.hunger < 0 then
+							self.hunger = 0
 						end
 					end
-					
-					if IsValid(self.npc.melon) then
-						self.npc:SetLastPosition(self.npc.melon:GetPos()+Vector(0,0,0))
-						self.npc:SetSchedule(71)
-					end
-				end 
-				-- eating stuff
-				local sphents = ents.FindInSphere(self.npc:GetPos(),32)
-				for i, thent in ipairs(sphents) do
-					--eat Watermelon
-					if thent:GetClass() == "watermelon" then
-						thent:Remove()
-						self.hunger = self.hunger - 50*thent:GetModelScale()
-						break
-					--eat antlionmeat
-					elseif thent:GetClass() == "colonies_antlionmeat" then
-						thent:Remove()
-						self.hunger = self.hunger - 60*thent:GetModelScale()
-						break
-					--eat headcrabmeat
-					elseif thent:GetClass() == "colonies_headcrabmeat" then
-						thent:Remove()
-						self.hunger = self.hunger - 35*thent:GetModelScale()
-						break
-					--eat humanmeat
-					elseif thent:GetClass() == "colonies_humanmeat" then
-						thent:Remove()
-						self.hunger = self.hunger - 75*thent:GetModelScale()
-						break
-					-- headcrab egg
-					elseif thent:GetClass() == "colonies_headcrabegg" then
-						thent:Remove()
-						self.hunger = self.hunger - 30*thent:GetModelScale()
-						break
-					-- human egg
-					elseif thent:GetClass() == "colonies_humanegg" then
-						thent:Remove()
-						self.hunger = self.hunger - 50*thent:GetModelScale()
-						break
-					-- zombies egg
-					elseif thent:GetClass() == "colonies_zombieegg" then
-						thent:Remove()
-						self.hunger = self.hunger - 50*thent:GetModelScale()
-						break
-					end
+				else
+					self.npc.melon = rc_api.getNearestFood(self.npc)
 				end
-				if self.hunger < 0 then
-					self.hunger = 0
-				end
+			
 			else
 				if self.npc:Health() < self.maxhp then
 					self.npc:SetHealth(self.npc:Health()+self.hpregen*GetConVarNumber("rc_speed")*GetConVarNumber("rc_time"))
 				end
 			end
-			self.npc:SetNWInt("HChealth", self.npc:Health() );
-			if self.age <= GetConVarNumber("rc_antlion_maturetime") then
-				self.scale = 0.1 + (self.age/GetConVarNumber("rc_antlion_maturetime"))*(0.9)
+			
+			if self.age <= GetConVarNumber("rc_antlion_maturetime")*0.25 then
+				self.scale = 0.1 + (2*self.age/GetConVarNumber("rc_antlion_maturetime"))*(0.9)
+				self.npc:SetModelScale(self.scale,GetConVarNumber("rc_time"));
+			elseif self.age <= GetConVarNumber("rc_antlion_maturetime")*0.75 then
+			
+			elseif self.age <= GetConVarNumber("rc_antlion_maturetime") then
+				self.scale = 0.5 + (2*(self.age-GetConVarNumber("rc_antlion_maturetime")*0.75)/GetConVarNumber("rc_antlion_maturetime"))
 				self.npc:SetModelScale(self.scale,GetConVarNumber("rc_time"));
 			end
+			
+			self.npc:SetNWInt("HCage",self.age)
+			self.npc:SetNWInt("HChunger",self.hunger)
+			self.npc:SetNWInt( "HChealth" , self.npc:Health() );
 			self.npc:SetNWInt("G",255*(self.mhunger-self.hunger)/self.hunger)
 			self.npc:SetNWInt("R",255*self.hunger/self.mhunger)
 			self.npc:SetNWInt("Z",5 + 65*self.scale)

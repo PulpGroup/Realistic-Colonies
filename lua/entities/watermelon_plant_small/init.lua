@@ -26,11 +26,9 @@
 		
 		self:SetModel("models/props_foliage/shrub_01a.mdl")
 		self:SetSolid( SOLID_VPHYSICS ) // Toolbox
-		self.lastmelon_plant = math.Round(CurTime())
-		self.lastmelon = math.Round(CurTime())
 		self:SetNWBool("RC",true)
 		self.age=0
-		self.nextmelon=GetConVarNumber("rc_watermelonbs_time")
+		self.nextmelon=GetConVarNumber("rc_watermelons_time")
 		
     end
      
@@ -42,7 +40,7 @@
 			self:Remove()
 		end
 		
-		if self.age > GetConVarNumber("rc_watermelonbgg_time") then
+		if self.age > GetConVarNumber("rc_watermelonb_life") then
 			local random = math.Round(math.random(0,3))
 			if random == 3 and treemCount() <= GetConVarNumber("rc_tree_maxm") then
 				local melon = ents.Create("watermelon_plant_medium")
@@ -54,16 +52,16 @@
 			self:Remove()
 		end
 		if self.age > self.nextmelon  and watermelonCount() <= GetConVarNumber("rc_watermelon_max") then
-			self.nextmelon = GetConVarNumber("rc_watermelonbs_time") + self.age
+			self.nextmelon = GetConVarNumber("rc_watermelons_time") + self.age
 			local melon = ents.Create("watermelon")
 			local dist = GetConVarNumber("rc_watermelons_distance")
-			melon:SetPos(self:GetPos()+Vector(math.random(-dist,dist),math.random(-dist,dist),0))
+			melon:SetPos(self:GetPos()+Vector(math.random(-dist,dist),math.random(-dist,dist),40))
 			melon:Spawn()
 			melon:SetOwner(self.Owner)
-			self.lastmelon = math.Round(CurTime())
+			melon:SetModelScale(GetConVarNumber("rc_watermelons_size")/100,0);
 		end
 		
-		self.age = self.age + GetConVarNumber("rc_watermelonbs_time")
-		self:NextThink( CurTime() + GetConVarNumber("rc_watermelonbs_time")/GetConVarNumber("rc_speed") )
+		self.age = self.age + 1
+		self:NextThink( CurTime() + GetConVarNumber("rc_planttime") )
 		return true
 	end 

@@ -22,6 +22,9 @@
 		self:SetColor(255,0,0,255)
 		self.lastmelon = math.Round(CurTime())
 		self:SetNWBool("RC",true)
+		self:SetNWBool("Eatable",true)
+		self:SetNWString("rc_class","antlion")
+		self:SetNWInt("Food",GetConVarNumber("rc_food_antlion_meat"))
     end
 
 	function ENT:Think()
