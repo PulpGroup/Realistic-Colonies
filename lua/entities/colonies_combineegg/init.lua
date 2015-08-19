@@ -3,9 +3,9 @@
       
      include('shared.lua')
 	 
-	 function ENT:SpawnFunction( ply, tr)
+	function ENT:SpawnFunction( ply, tr)
 		local SpawnPos = tr.HitPos + Vector( 0, 0, 15) 
-		local ent = ents.Create( "colonies_humanegg" )
+		local ent = ents.Create( "colonies_combineegg" )
 		ent:SetPos( SpawnPos )
 		ent:Spawn()
 		return ent
@@ -24,6 +24,7 @@
 		self:SetNWBool("Eatable",true)
 		self:SetNWString("rc_class","human")
 		self:SetNWInt("Food",GetConVarNumber("rc_food_human_egg"))
+		self:SetColor( Color(128,128,255,255) )
 		
     end
      
@@ -47,8 +48,8 @@
 		end
 		if math.Round(CurTime()) > self.laid + GetConVarNumber("rc_human_eggtime")/GetConVarNumber("rc_speed") then
 			
-			if humanCount() < GetConVarNumber("rc_human_max") then
-				local heady = ents.Create("colonies_human")
+			if combineCount() < GetConVarNumber("rc_human_max") then
+				local heady = ents.Create("colonies_combine")
 				undo.ReplaceEntity(self.Entity,heady)
 		
 				heady:SetPos(self:GetPos()+Vector(0,0,15))

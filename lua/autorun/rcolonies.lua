@@ -46,7 +46,7 @@ AddCSLuaFile("rcoloniesclient.lua")
 		"Mafiatoss",
 		"Cake",
 		"Jean",
-		"Pipé",
+		"Pipe",
 		"Cupcake",
 		"Mr Troll",
 		"Kerrigan",
@@ -140,7 +140,7 @@ CreateConVar("rc_watermelons_distance",150, {FCVAR_NOTIFY}) --Maximum/Minimum di
 CreateConVar("rc_antlion_lifespan",300, {FCVAR_NOTIFY}) -- Lifespan of antlion.
 CreateConVar("rc_antlion_hunger",1, {FCVAR_NOTIFY}) -- How fast should the hunger rise.
 CreateConVar("rc_antlion_mhunger",150, {FCVAR_NOTIFY}) -- The max hunger before npc die of starvation
-CreateConVar("rc_antlion_eggtime",15, {FCVAR_NOTIFY}) -- Time needed for the egg to break.
+CreateConVar("rc_antlion_eggtime",10, {FCVAR_NOTIFY}) -- Time needed for the egg to break.
 CreateConVar("rc_antlion_maturetime",50, {FCVAR_NOTIFY}) -- Time needed for an antlion to become adult
 CreateConVar("rc_antlion_pregtime",80, {FCVAR_NOTIFY}) -- Time between each egg lay.
 CreateConVar("rc_antlion_max",50, {FCVAR_NOTIFY}) --Maximum antlion population
@@ -149,7 +149,7 @@ CreateConVar("rc_antlion_max",50, {FCVAR_NOTIFY}) --Maximum antlion population
 CreateConVar("rc_human_lifespan",450, {FCVAR_NOTIFY}) -- Lifespan of human.
 CreateConVar("rc_human_hunger",1, {FCVAR_NOTIFY}) -- How fast should the hunger rise.
 CreateConVar("rc_human_mhunger",200, {FCVAR_NOTIFY}) -- The max hunger before npc die of starvation
-CreateConVar("rc_human_eggtime",30, {FCVAR_NOTIFY}) -- Time needed for the egg to break.
+CreateConVar("rc_human_eggtime",20, {FCVAR_NOTIFY}) -- Time needed for the egg to break.
 CreateConVar("rc_human_maturetime",80, {FCVAR_NOTIFY}) -- Time needed for an human to become adult
 CreateConVar("rc_human_pregtime",120, {FCVAR_NOTIFY}) -- Time between each egg lay.
 CreateConVar("rc_human_max",40, {FCVAR_NOTIFY}) --Maximum human population
@@ -161,12 +161,12 @@ CreateConVar("rc_zombie_max",35, {FCVAR_NOTIFY}) --Maximum zombie population
 CreateConVar("rc_zombie_mhunger",225, {FCVAR_NOTIFY}) -- Maximum hunger of zombies.
 CreateConVar("rc_zombie_maturetime",50, {FCVAR_NOTIFY}) --How long before the zombie matures
 CreateConVar("rc_zombie_pregtime",75, {FCVAR_NOTIFY}) --How long between each egg
-CreateConVar("rc_zombie_eggtime",10, {FCVAR_NOTIFY}) --How long before egg hatches
+CreateConVar("rc_zombie_eggtime",15, {FCVAR_NOTIFY}) --How long before egg hatches
 
 CreateConVar("rc_headcrab_lifespan",200, {FCVAR_NOTIFY}) --How long the headcrab lives for
 CreateConVar("rc_headcrab_hunger",1, {FCVAR_NOTIFY}) -- How quickly the hunger increases
 CreateConVar("rc_headcrab_mhunger",115, {FCVAR_NOTIFY}) -- Maximum hunger of headcrab.
-CreateConVar("rc_headcrab_eggtime",10, {FCVAR_NOTIFY}) --How long before egg hatches
+CreateConVar("rc_headcrab_eggtime",5, {FCVAR_NOTIFY}) --How long before egg hatches
 CreateConVar("rc_headcrab_maturetime",20, {FCVAR_NOTIFY}) --How long before the Headcrab matures
 CreateConVar("rc_headcrab_pregtime",50, {FCVAR_NOTIFY}) --How long between each egg
 CreateConVar("rc_headcrab_max",95, {FCVAR_NOTIFY}) --Maximum headcrab population

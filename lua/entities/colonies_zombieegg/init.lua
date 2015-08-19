@@ -46,7 +46,7 @@
 		if GetConVarNumber("rc_remove")==1 then 
 			self:Remove()
 		end
-		if math.Round(CurTime()) > self.laid + GetConVarNumber("rc_headcrab_eggtime")/GetConVarNumber("rc_speed") then
+		if math.Round(CurTime()) > self.laid + GetConVarNumber("rc_zombie_eggtime")/GetConVarNumber("rc_speed") then
 		
 			if zombieCount() < GetConVarNumber("rc_zombie_max") then
 				local heady = ents.Create("colonies_zombie")
@@ -60,6 +60,6 @@
 			self:Remove()
 		end
 		
-		self:NextThink( CurTime() + GetConVarNumber("rc_time")/GetConVarNumber("rc_speed") )
+		self:NextThink( CurTime() + GetConVarNumber("rc_zombie_eggtime")/GetConVarNumber("rc_speed") )
 		return true
 	end 

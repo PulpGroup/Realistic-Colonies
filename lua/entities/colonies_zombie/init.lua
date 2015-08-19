@@ -13,7 +13,7 @@
 	}
 	
 	function ENT:SpawnFunction( ply, tr)
-		if headcrabCount() < GetConVarNumber("rc_zombie_max") then
+		if zombieCount() < GetConVarNumber("rc_zombie_max") then
 			local SpawnPos = tr.HitPos
 			local ent = ents.Create( "colonies_zombie" )
 			ent:SetPos( SpawnPos )
@@ -134,15 +134,6 @@
 				self.npc:SetColor( Color(255,255,255,255) )
 			end
 
-			if self.age > self.nextegg and zombieCount() <= GetConVarNumber("rc_zombie_max") and self.hunger <= self.mhunger then
-				local rand = math.Round(math.random(1,1.6))
-				for i=1,rand do
-					local egg = ents.Create("colonies_zombieegg")
-					egg:SetPos(self.npc:GetPos()+Vector(0,0,15))
-					egg:Spawn()
-				end
-				self.nextegg = self.age + GetConVarNumber("rc_zombie_pregtime") + math.Round(math.random(-2,2))
-			end
 			
 			
 			if self.hunger>GetConVarNumber("rc_zombie_mhunger")*GetConVarNumber("rc_hungry")/100 then
@@ -184,6 +175,17 @@
 			else
 				if self.npc:Health() < self.maxhp then
 					self.npc:SetHealth(self.npc:Health()+self.hpregen*GetConVarNumber("rc_speed")*GetConVarNumber("rc_time"))
+				end
+			
+				-- Laying egg time
+				if self.age > self.nextegg and zombieCount() <= GetConVarNumber("rc_zombie_max") and self.hunger <= self.mhunger then
+					local rand = math.Round(math.random(1,1.6))
+					for i=1,rand do
+						local egg = ents.Create("colonies_zombieegg")
+						egg:SetPos(self.npc:GetPos()+Vector(0,0,15))
+						egg:Spawn()
+					end
+					self.nextegg = self.age + GetConVarNumber("rc_zombie_pregtime") + math.Round(math.random(-2,2))
 				end
 			end
 			

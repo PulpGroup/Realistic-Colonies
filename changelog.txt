@@ -7,6 +7,48 @@ Todo :
 
 What is new :
 
+V 2.1 :
+
+GAMEPLAY changes :
+- Added a new colony :
+* Combine are back, with stunsticks
+* Combine are exactly like human, just in an different team. ( They share the same convar )
+* Combine food type is the same as human one, so that human are not gonna eat human, nor human gonna eat combine.
+- Fixes :
+* Npcs are not laying eggs when they are to hungry ( this really allowed colony to survive without having to eat )
+
+FIXES :
+- Fixed some misstakes in convar uses related to eggs
+- Fixed some terrible misstakes in counting colonies member ( human was sometimes counting headcrab one instead ... )
+
+OTHER :
+- Name in spawn tab changed
+- Gamemode removed
+
+V 2.0 :
+- SPAWN ICONS ... yeah finally ... ( it took me a long time to make them =( )
+Note : not all of them are included nor really good, but that's better than nothing
+
+Plants :
+- Changed some convar related things.
+- Small plants spawn small melons, Big plants spawn big melon.
+- Melon are spawn at higher places to prevent them geting stuck in the map ( you should not let tree grows in corner, they need a lot of space ! )
+
+NPCS :
+- Changed a lot of convar value to balance things
+- Added a young state, npcs grow fast then stop ( young ) then grow again.
+- NPCS are not eating their own meat, they won't target it, but they still become crazy if not enough food is present ( and very hungry , this does not affect human )
+- NPCS can now eat eggs to stay alive
+- Zombie drops 1 human and 1 headcrabs meat on death. (non natural death)
+-Human now have crowbar !
+
+Note : 
+Zombie are considered as headcrab, they can eat human meat but not headcrab one.
+Zombie eggs are considered as human, they can be eat by other zombies and headcrab but not by human.
+
+Things you will never notice :
+- Changed a lot of internal code so the entities' script are much much smaller
+- Improved the RC API.
 
 V 2.0 pre release 5 :
 (added) Torso zombies.

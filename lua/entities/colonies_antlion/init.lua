@@ -123,15 +123,6 @@
 				self.npc:SetColor( Color(255,255,255,255) )
 			end
 
-			if self.age > self.nextegg and antlionCount() <= GetConVarNumber("rc_antlion_max") and self.hunger <= self.mhunger then
-				local rand = math.Round(math.random(1,2.2))
-				for i=1,rand do
-					local egg = ents.Create("colonies_antlionegg")
-					egg:SetPos(self.npc:GetPos()+Vector(0,0,15))
-					egg:Spawn()
-				end
-				self.nextegg = self.age + GetConVarNumber("rc_antlion_pregtime") + math.Round(math.random(-2,2))
-			end
 			
 			
 			--eating script
@@ -170,6 +161,17 @@
 			else
 				if self.npc:Health() < self.maxhp then
 					self.npc:SetHealth(self.npc:Health()+self.hpregen*GetConVarNumber("rc_speed")*GetConVarNumber("rc_time"))
+				end
+			
+				-- Laying egg time
+				if self.age > self.nextegg and antlionCount() <= GetConVarNumber("rc_antlion_max") then
+					local rand = math.Round(math.random(1,2.2))
+					for i=1,rand do
+						local egg = ents.Create("colonies_antlionegg")
+						egg:SetPos(self.npc:GetPos()+Vector(0,0,15))
+						egg:Spawn()
+					end
+					self.nextegg = self.age + GetConVarNumber("rc_antlion_pregtime") + math.Round(math.random(-2,2))
 				end
 			end
 			

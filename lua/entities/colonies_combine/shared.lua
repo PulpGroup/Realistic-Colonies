@@ -6,4 +6,4 @@ ENT.Category		= "Realistic_Colonies"
 ENT.Spawnable		= true
 ENT.AdminSpawnable 	= true
 
-ENT.PrintName		= "rc_plant_huge"
+ENT.PrintName		= "rc_combine"

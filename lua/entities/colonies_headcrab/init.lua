@@ -129,20 +129,12 @@
 				self.npc:SetColor( Color(255,255,255,255) )
 			end
 
-			if self.age > self.nextegg and headcrabCount() <= GetConVarNumber("rc_headcrab_max") and self.hunger <= self.mhunger then
-				local rand = math.Round(math.random(1,2.2))
-				for i=1,rand do
-					local egg = ents.Create("colonies_headcrabegg")
-					egg:SetPos(self.npc:GetPos()+Vector(0,0,15))
-					egg:Spawn()
-				end
-				self.nextegg = self.age + GetConVarNumber("rc_headcrab_pregtime") + math.Round(math.random(-2,2))
-			end
+			
 			
 			
 			--eating script
 			if self.hunger>GetConVarNumber("rc_headcrab_mhunger")*GetConVarNumber("rc_hungry")/100 then
-			
+				
 				--dieing of starvation thing
 				if self.hunger >= self.mhunger then
 					self.npc:SetHealth(self.npc:Health()-1*GetConVarNumber("rc_speed")*GetConVarNumber("rc_time"))
@@ -176,6 +168,17 @@
 			else
 				if self.npc:Health() < self.maxhp then
 					self.npc:SetHealth(self.npc:Health()+self.hpregen*GetConVarNumber("rc_speed")*GetConVarNumber("rc_time"))
+				end
+			
+				-- Laying egg time
+				if self.age > self.nextegg and headcrabCount() <= GetConVarNumber("rc_headcrab_max") and self.hunger <= self.mhunger then
+					local rand = math.Round(math.random(1,2.2))
+					for i=1,rand do
+						local egg = ents.Create("colonies_headcrabegg")
+						egg:SetPos(self.npc:GetPos()+Vector(0,0,15))
+						egg:Spawn()
+					end
+					self.nextegg = self.age + GetConVarNumber("rc_headcrab_pregtime") + math.Round(math.random(-2,2))
 				end
 			end
 			

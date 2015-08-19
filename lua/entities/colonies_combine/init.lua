@@ -2,19 +2,19 @@
     AddCSLuaFile( "shared.lua" )
 	include("shared.lua")
 	
-	function humanCount()
-		local hcs = ents.FindByClass("colonies_human")
+	function combineCount()
+		local hcs = ents.FindByClass("colonies_combine")
 		return #hcs
 	end
 	
 	local hctypes = {
-		"npc_citizen"
+		"npc_metropolice"
 	}
 	
 	function ENT:SpawnFunction( ply, tr)
-		if humanCount() < GetConVarNumber("rc_human_max") then
+		if combineCount() < GetConVarNumber("rc_human_max") then
 			local SpawnPos = tr.HitPos
-			local ent = ents.Create( "colonies_human" )
+			local ent = ents.Create( "colonies_combine" )
 			ent:SetPos( SpawnPos )
 			ent:Spawn()
 			return ent
@@ -32,16 +32,15 @@
 		self.npc:Spawn()
 		self.npc:Activate()
 		self.npc:SetOwner(self.Owner)
-		self.npc:Give("weapon_crowbar")
-		self.npc:SetKeyValue( "additionalequipment", "weapon_crowbar" )
 		
+		self.npc:Give("weapon_stunstick")
+		self.npc:SetKeyValue( "additionalequipment", "weapon_stunstick" )
+		
+		self.npc:CapabilitiesAdd (CAP_MOVE_SHOOT)
 		self.npc:CapabilitiesAdd (CAP_USE_WEAPONS)
 		self.npc:CapabilitiesAdd (CAP_ANIMATEDFACE)
-		self.npc:CapabilitiesAdd (CAP_INNATE_MELEE_ATTACK1)
-		self.npc:CapabilitiesAdd (CAP_INNATE_MELEE_ATTACK2)
 		self.npc:CapabilitiesAdd (CAP_WEAPON_MELEE_ATTACK1)
 		self.npc:CapabilitiesAdd (CAP_WEAPON_MELEE_ATTACK2)
-		
 		
 		--set color and value
 		self.name = coloniesnames[math.random(1,#coloniesnames)]
@@ -75,6 +74,7 @@
 			self.npc:AddRelationship("npc_headcrab_black D_NU 999")
 			self.npc:AddRelationship("npc_zombie D_NU 999")
 			self.npc:AddRelationship("npc_citizen D_NU 999")
+			self.npc:AddRelationship("npc_metropolice D_NU 999")
 		end
 		
 		self.npc:SetModelScale(self.scale,0);
@@ -118,20 +118,17 @@
 			
 			-- POS for the meat
 			self:SetPos(self.npc:GetPos()-Vector(0,0,10000))
-
+			
 			if self.age >  GetConVarNumber("rc_human_lifespan") then
 				self:Remove()
 				if GetConVarNumber("rc_printevents") == 1 then
-					PrintMessage(HUD_PRINTTALK,"human "..self.name.." died (age).")
+					PrintMessage(HUD_PRINTTALK,"combine "..self.name.." died (age).")
 				end
 			end
-
+			
 			if self.age > GetConVarNumber("rc_human_maturetime") and self.npc:GetNWBool("isSelected")==false  then
 				self.npc:SetColor( Color(255,255,255,255) )
 			end
-
-			
-			
 			
 			--eating script
 			if self.hunger>GetConVarNumber("rc_human_mhunger")*GetConVarNumber("rc_hungry")/100 then
@@ -141,7 +138,7 @@
 					self.npc:SetHealth(self.npc:Health()-1*GetConVarNumber("rc_speed")*GetConVarNumber("rc_time"))
 					if(self.npc:Health() <= 0) then
 						if GetConVarNumber("rc_printevents") == 1 then
-							PrintMessage(HUD_PRINTTALK,"human "..self.name.." died (starvation).")
+							PrintMessage(HUD_PRINTTALK,"combine "..self.name.." died (starvation).")
 						end
 						local meat = ents.Create("colonies_humanmeat")
 						meat:SetPos(self:GetPos()+Vector(0,0,10010))
@@ -172,8 +169,8 @@
 				end
 			
 				-- Laying egg time
-				if self.age > self.nextegg and humanCount() <= GetConVarNumber("rc_human_max") and self.hunger <= self.mhunger then
-					local egg = ents.Create("colonies_humanegg")
+				if self.age > self.nextegg and combineCount() <= GetConVarNumber("rc_human_max") and self.hunger <= self.mhunger then
+					local egg = ents.Create("colonies_combineegg")
 					egg:SetPos(self.npc:GetPos()+Vector(0,0,15))
 					egg:Spawn()
 					self.nextegg = self.age + GetConVarNumber("rc_human_pregtime") + math.Round(math.random(-2,2))

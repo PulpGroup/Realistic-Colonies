@@ -1,14 +1,9 @@
-  ENT.Base = "base_anim"
-  ENT.Type = "anim"
-   
-  ENT.PrintName = "Rc-Antlion'Meat"
-  ENT.Author = "Pulpgroup"
-  ENT.Contact = "Pulpgroup"
-  ENT.Purpose = "It's meat you idiot"
-  ENT.Instructions = "give it to an antlion or headcrab."
-  ENT.Category = "Realistic_Colonies"
-  
-  ENT.Spawnable	= true
-  ENT.AdminSpawnable = true
-  ENT.AutomaticFrameAdvance = true
-   
+ENT.Base			= "base_anim"
+ENT.Type			= "anim"
+ENT.Author			= "Pulpgroup"
+ENT.Contact			= "Pulpgroup"
+ENT.Category		= "Realistic_Colonies"
+ENT.Spawnable		= true
+ENT.AdminSpawnable 	= true
+
+ENT.PrintName		= "rc_antlion_meat"
