@@ -6,6 +6,15 @@ Todo :
 
 What is new :
 
+V 2.1 rev A :
+change in NPCs behavior :
+- NPCs wont all target the same 'food', which improve the global efficiency of the colonies ( and as well using less time the costy searching for food function )
+intern changes :
+- New function to init food items
+	rc_api.setFood ( ent , foodType[type : string] )
+- New function to properly remove NPCs 
+	rc_api.removeNPC ( ent ) 
+
 V 2.1 :
 
 GAMEPLAY changes :

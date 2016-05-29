@@ -21,9 +21,7 @@
 		self:GetPhysicsObject():Wake()
 		self:SetMaterial("models/debug/debugwhite")
 		self.laid = math.Round(CurTime())
-		self:SetNWBool("RC",true)
-		self:SetNWBool("Eatable",true)
-		self:SetNWString("rc_class","headcrab")
+		rc_api.setFood(self,"headcrab")
 		self:SetNWInt("Food",GetConVarNumber("rc_food_headcrab_egg"))
     end
      

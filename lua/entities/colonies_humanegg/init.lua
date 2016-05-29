@@ -20,9 +20,7 @@
 		self:SetSolid( SOLID_VPHYSICS ) // Toolbox 
 		self:GetPhysicsObject():Wake()
 		self.laid = math.Round(CurTime())
-		self:SetNWBool("RC",true)
-		self:SetNWBool("Eatable",true)
-		self:SetNWString("rc_class","human")
+		rc_api.setFood(self,"human")
 		self:SetNWInt("Food",GetConVarNumber("rc_food_human_egg"))
 		
     end

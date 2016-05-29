@@ -20,12 +20,10 @@
 		self:SetSolid( SOLID_VPHYSICS ) // Toolbox 
 		self:GetPhysicsObject():Wake()
 		self.laid = math.Round(CurTime())
-		self:SetNWBool("RC",true)
-		self:SetNWBool("Eatable",true)
-		self:SetNWString("rc_class","human")
 		self:SetNWInt("Food",GetConVarNumber("rc_food_zombie_egg"))
 		self:SetColor(Color(255,0,0,255))
 		
+		rc_api.setFood(self,"human")
     end
      
      function ENT:OnTakeDamage(dmg)

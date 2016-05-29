@@ -21,9 +21,7 @@
 		self:GetPhysicsObject():Wake()
 		self:SetColor(255,0,0,255)
 		self.lastmelon = math.Round(CurTime())
-		self:SetNWBool("RC",true)
-		self:SetNWBool("Eatable",true)
-		self:SetNWString("rc_class","human")
+		rc_api.setFood(self,"human")
 		self:SetNWInt("Food",GetConVarNumber("rc_food_human_meat"))
     end
 

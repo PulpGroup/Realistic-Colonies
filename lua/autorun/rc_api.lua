@@ -60,12 +60,29 @@ function rc_api.getNearestFood(ent)
 	
 	for k, v in pairs(objets) do
 		if( rc_api.isValidFood(ent,v) ) then
-			if ( v:GetPos():Distance(pos) < dist ) then
+			if ( v:GetPos():Distance(pos) < dist and v:GetNWBool("Targetable",false) ) then
+				if ( rc_api.isValidFood(ent,eating) ) then
+					eating:SetNWBool("Targetable",true);
+				end
+				v:SetNWBool("Targetable",false);
 				eating = v;
 				dist = v:GetPos():Distance(pos);
 			end
 		end
 	end
-	
 	return eating;
+end
+
+function rc_api.setFood ( ent , str )
+	ent:SetNWBool("RC",true)
+	ent:SetNWBool("Eatable",true)
+	ent:SetNWBool("Targetable",true)
+	ent:SetNWString("rc_class",str)
+end
+
+function rc_api.removeNPC( ent )
+	if ( rc_api.isFood(ent.melon) ) then
+		ent.melon:SetNWBool("Targetable",true)
+	end
+	ent:Remove()
 end

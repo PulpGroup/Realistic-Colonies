@@ -33,7 +33,7 @@
 		--set color and value
 		self.name = coloniesnames[math.random(1,#coloniesnames)]
 		self.nextegg = GetConVarNumber("rc_antlion_maturetime") + GetConVarNumber("rc_antlion_pregtime") + math.Round(math.random(-2,2))
-		self.npc.melon=nil
+		self.melon=nil
 		self.hunger = 0
 		self.mhunger = GetConVarNumber("rc_antlion_mhunger")
 		self.age=0
@@ -96,8 +96,8 @@
 			local meat = ents.Create("colonies_antlionmeat")
 			meat:SetPos(self:GetPos()+Vector(0,0,10010))
 			meat:SetModelScale(self.scale,0);
-			meat:Spawn()
-			self:Remove()
+			meat:Spawn();
+			rc_api.removeNPC(self);
 		else
 			if GetConVarNumber("rc_remove")==1 then 
 				self:Remove()
@@ -113,7 +113,7 @@
 			self:SetPos(self.npc:GetPos()-Vector(0,0,10000))
 
 			if self.age > GetConVarNumber("rc_antlion_lifespan") then
-				self:Remove()
+				rc_api.removeNPC(self);
 				if GetConVarNumber("rc_printevents") == 1 then
 					PrintMessage(HUD_PRINTTALK,"Antlion "..self.name.." died (age).")
 				end
@@ -139,23 +139,23 @@
 						meat:SetPos(self:GetPos()+Vector(0,0,10010))
 						meat:SetModelScale(self.scale,0);
 						meat:Spawn()
-						self:Remove()
+						rc_api.removeNPC(self);
 					end
 				end
 				
-				if IsValid(self.npc.melon) then
-					self.npc:SetLastPosition(self.npc.melon:GetPos()+Vector(0,0,0))
+				if IsValid(self.melon) then
+					self.npc:SetLastPosition(self.melon:GetPos()+Vector(0,0,0))
 					self.npc:SetSchedule(71)
 					-- eating stuff
-					if (self.npc:GetPos():Distance(self.npc.melon:GetPos()) < 32) then
-						self.npc.melon:Remove()
-						self.hunger = self.hunger - self.npc.melon:GetNWInt("Food",0)*self.npc.melon:GetModelScale()
+					if (self.npc:GetPos():Distance(self.melon:GetPos()) < 32) then
+						self.melon:Remove()
+						self.hunger = self.hunger - self.melon:GetNWInt("Food",0)*self.melon:GetModelScale()
 						if self.hunger < 0 then
 							self.hunger = 0
 						end
 					end
 				else
-					self.npc.melon = rc_api.getNearestFood(self.npc)
+					self.melon = rc_api.getNearestFood(self.npc)
 				end
 			
 			else
@@ -164,7 +164,7 @@
 				end
 			
 				-- Laying egg time
-				if self.age > self.nextegg and antlionCount() <= GetConVarNumber("rc_antlion_max") then
+				if self.age > self.nextegg and antlionCount() <= GetConVarNumber("rc_antlion_max") and self.hunger <= self.mhunger then
 					local rand = math.Round(math.random(1,2.2))
 					for i=1,rand do
 						local egg = ents.Create("colonies_antlionegg")
