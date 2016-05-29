@@ -1,19 +1,14 @@
-Realistic Colonies V2.0 is made by : The Blue Surfer @ Fadoli and Wamilou.
-Do not clame as your addon.
+Realistic Colonies V2.1 is made by : The Blue Surfer @ Fadoli and Wamilou.
+Do not clame this addons as yours.
 
 Todo :
 - genetic thing or class thing
-- realistic trees + good tree names.
 
 What is new :
 
 V 2.1 :
 
 GAMEPLAY changes :
-- Added a new colony :
-* Combine are back, with stunsticks
-* Combine are exactly like human, just in an different team. ( They share the same convar )
-* Combine food type is the same as human one, so that human are not gonna eat human, nor human gonna eat combine.
 - Fixes :
 * Npcs are not laying eggs when they are to hungry ( this really allowed colony to survive without having to eat )
 
