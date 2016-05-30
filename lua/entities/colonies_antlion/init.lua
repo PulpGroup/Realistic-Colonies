@@ -34,8 +34,8 @@
 		self.name = coloniesnames[math.random(1,#coloniesnames)]
 		self.nextegg = GetConVarNumber("rc_antlion_maturetime") + GetConVarNumber("rc_antlion_pregtime") + math.Round(math.random(-2,2))
 		self.melon=nil
-		self.hunger = 0
 		self.mhunger = GetConVarNumber("rc_antlion_mhunger")
+		self.hunger = self.mhunger * 0.25
 		self.age=0
 		self.npc:SetNWInt("G",0)
 		self.npc:SetNWInt("R",0)
@@ -60,12 +60,13 @@
 			self.npc:AddRelationship("npc_antlion D_NU 999")
 			self.npc:AddRelationship("npc_headcrab D_NU 999")
 			self.npc:AddRelationship("npc_headcrab_black D_NU 999")
+			self.npc:AddRelationship("npc_headcrab_fast D_NU 999")
 			self.npc:AddRelationship("npc_zombie D_NU 999")
 			self.npc:AddRelationship("npc_citizen D_NU 999")
 		end
 		
 		self.npc:SetModelScale(self.scale,0);
-		self.npc:SetHealth(10);
+		self.npc:SetHealth(self.maxhp/2);
 		self.npc:SetNWInt("HChealth", self.npc:Health() );
 	 
     end
@@ -114,12 +115,12 @@
 
 			if self.age > GetConVarNumber("rc_antlion_lifespan") then
 				rc_api.removeNPC(self);
-				if GetConVarNumber("rc_printevents") == 1 then
+				if GetConVarNumber("rc_printevents") > 2 then
 					PrintMessage(HUD_PRINTTALK,"Antlion "..self.name.." died (age).")
 				end
 			end
 
-			if self.age > GetConVarNumber("rc_antlion_maturetime") and self.npc:GetNWBool("isSelected")==false  then
+			if self.npc:GetNWBool("isSelected")==false  then
 				self.npc:SetColor( Color(255,255,255,255) )
 			end
 
@@ -132,7 +133,7 @@
 				if self.hunger >= self.mhunger then
 					self.npc:SetHealth(self.npc:Health()-1*GetConVarNumber("rc_speed")*GetConVarNumber("rc_time"))
 					if(self.npc:Health() <= 0) then
-						if GetConVarNumber("rc_printevents") == 1 then
+						if GetConVarNumber("rc_printevents") > 1 then
 							PrintMessage(HUD_PRINTTALK,"antlion "..self.name.." died (starvation).")
 						end
 						local meat = ents.Create("colonies_antlionmeat")
@@ -144,8 +145,8 @@
 				end
 				
 				if IsValid(self.melon) then
-					self.npc:SetLastPosition(self.melon:GetPos()+Vector(0,0,0))
-					self.npc:SetSchedule(71)
+					self.npc:SetLastPosition(self.melon:GetPos())
+					self.npc:SetSchedule(SCHED_FORCED_GO_RUN)
 					-- eating stuff
 					if (self.npc:GetPos():Distance(self.melon:GetPos()) < 32) then
 						self.melon:Remove()
@@ -164,8 +165,8 @@
 				end
 			
 				-- Laying egg time
-				if self.age > self.nextegg and antlionCount() <= GetConVarNumber("rc_antlion_max") and self.hunger <= self.mhunger then
-					local rand = math.Round(math.random(1,2.2))
+				if self.age > self.nextegg and antlionCount() <= GetConVarNumber("rc_antlion_max") and self.hunger <= self.mhunger/2 then
+					local rand = math.Round(math.random(1,2))
 					for i=1,rand do
 						local egg = ents.Create("colonies_antlionegg")
 						egg:SetPos(self.npc:GetPos()+Vector(0,0,15))

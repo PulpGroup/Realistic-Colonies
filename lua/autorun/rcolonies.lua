@@ -82,13 +82,22 @@ AddCSLuaFile("rcoloniesclient.lua")
 
 --Global Convar
 CreateConVar("rc_printevents",1, {FCVAR_NOTIFY}) -- Shall we print death events ?
-CreateConVar("rc_hateplayers",0, {FCVAR_NOTIFY}) --Makes colonies npcs hate player
-CreateConVar("rc_remove",0, {FCVAR_NOTIFY}) --clean up colonies stuff ! / not recomanded to use
-CreateConVar("rc_searchrad",2048, {FCVAR_NOTIFY}) -- Radius to search for food
+-- When set to 0 : not detail
+-- When set to 1 or more : print starvation message
+-- When set to 2 or more : print natural death message
+CreateConVar("rc_hateplayers",0, {FCVAR_NOTIFY}) 
+-- When set to 1, the colonies will try to kill player
+CreateConVar("rc_searchrad",2048, {FCVAR_NOTIFY}) 
+-- Radius to search for food
+CreateConVar("rc_remove",0, {FCVAR_NOTIFY})
+-- Can be used to cleanup all the addons entity
 
-CreateConVar("rc_time",1, {FCVAR_NOTIFY}) -- Delay between each execution of npcs stuff.
-CreateConVar("rc_planttime",1, {FCVAR_NOTIFY}) --Delay between each execution of plant stuff.
-CreateConVar("rc_speed",1, {FCVAR_NOTIFY}) -- Changes the speed of the addons.
+CreateConVar("rc_time",1, {FCVAR_NOTIFY})
+-- Delay in seconds between each execution of npcs stuff.
+CreateConVar("rc_planttime",1, {FCVAR_NOTIFY})
+-- Delay in seconds between each execution of plant stuff.
+CreateConVar("rc_speed",1, {FCVAR_NOTIFY})
+-- Changes the speed of the addons. (puting 2 will make everything 2 times faster)
 
 
 --Meat stuff
@@ -99,34 +108,34 @@ CreateConVar("rc_watermelon_time",50, {FCVAR_NOTIFY}) -- Time needed for a water
 CreateConVar("rc_watermelon_max",100, {FCVAR_NOTIFY}) -- Limit of watermelon.
 
 -- Food value
-CreateConVar("rc_hungry",35, {FCVAR_NOTIFY}) -- the % of maxhunger after which npcs will start searching for food
+CreateConVar("rc_hungry",40, {FCVAR_NOTIFY}) -- the % of maxhunger after which npcs will start searching for food
 CreateConVar("rc_veryhungry",80, {FCVAR_NOTIFY}) -- the % of maxhunger after which npcs of same class can eat each others
 -- It doesn't affect human.
-CreateConVar("rc_food_melon" 			,40, {FCVAR_NOTIFY}) -- Food value of melon
-CreateConVar("rc_food_antlion_meat" 	,35, {FCVAR_NOTIFY}) -- Food value of antlion's meat
+CreateConVar("rc_food_melon" 			,45, {FCVAR_NOTIFY}) -- Food value of melon
+CreateConVar("rc_food_antlion_meat" 	,50, {FCVAR_NOTIFY}) -- Food value of antlion's meat
 CreateConVar("rc_food_headcrab_meat" 	,25, {FCVAR_NOTIFY}) -- Food value of headcrab's meat
 CreateConVar("rc_food_human_meat" 		,50, {FCVAR_NOTIFY}) -- Food value of human's meat
 
-CreateConVar("rc_food_antlion_egg"	 	,25, {FCVAR_NOTIFY}) -- Food value of antlion's egg
-CreateConVar("rc_food_headcrab_egg" 	,20, {FCVAR_NOTIFY}) -- Food value of headcrab's egg
-CreateConVar("rc_food_human_egg" 		,20, {FCVAR_NOTIFY}) -- Food value of human's egg
-CreateConVar("rc_food_zombie_egg" 		,20, {FCVAR_NOTIFY}) -- Food value of zombie's egg
+CreateConVar("rc_food_antlion_egg"	 	,40, {FCVAR_NOTIFY}) -- Food value of antlion's egg
+CreateConVar("rc_food_headcrab_egg" 	,15, {FCVAR_NOTIFY}) -- Food value of headcrab's egg
+CreateConVar("rc_food_human_egg" 		,30, {FCVAR_NOTIFY}) -- Food value of human's egg
+CreateConVar("rc_food_zombie_egg" 		,30, {FCVAR_NOTIFY}) -- Food value of zombie's egg
 
 --Watermelon plant stuff
 CreateConVar("rc_watermelonh_time",8, {FCVAR_NOTIFY}) --Time between each new watermelon
 CreateConVar("rc_watermelonb_time",12, {FCVAR_NOTIFY}) --Time between each new watermelon
 CreateConVar("rc_watermelonm_time",16, {FCVAR_NOTIFY}) --Time between each new watermelon
-CreateConVar("rc_watermelons_time",20, {FCVAR_NOTIFY}) --Time between each new watermelon
+CreateConVar("rc_watermelons_time",18, {FCVAR_NOTIFY}) --Time between each new watermelon
 
-CreateConVar("rc_watermelonh_size",150, {FCVAR_NOTIFY})-- Size of melon in %
+CreateConVar("rc_watermelonh_size",130, {FCVAR_NOTIFY})-- Size of melon in %
 CreateConVar("rc_watermelonb_size",100, {FCVAR_NOTIFY})-- Size of melon in %
-CreateConVar("rc_watermelonm_size",75, {FCVAR_NOTIFY}) -- Size of melon in %
-CreateConVar("rc_watermelons_size",50, {FCVAR_NOTIFY}) -- Size of melon in %
+CreateConVar("rc_watermelonm_size",80, {FCVAR_NOTIFY}) -- Size of melon in %
+CreateConVar("rc_watermelons_size",60, {FCVAR_NOTIFY}) -- Size of melon in %
 
-CreateConVar("rc_watermelonh_life",1200, {FCVAR_NOTIFY}) --Time between a tree death
-CreateConVar("rc_watermelonb_life",600, {FCVAR_NOTIFY}) --Time between tree grow
-CreateConVar("rc_watermelonm_life",240, {FCVAR_NOTIFY}) --Time between tree grow
-CreateConVar("rc_watermelons_life",120, {FCVAR_NOTIFY}) --Time between tree grow
+CreateConVar("rc_watermelonh_life",900, {FCVAR_NOTIFY}) --Time between a tree death
+CreateConVar("rc_watermelonb_life",400, {FCVAR_NOTIFY}) --Time between tree grow
+CreateConVar("rc_watermelonm_life",120, {FCVAR_NOTIFY}) --Time between tree grow
+CreateConVar("rc_watermelons_life",80, {FCVAR_NOTIFY}) --Time between tree grow
 CreateConVar("rc_tree_maxh",2, {FCVAR_NOTIFY}) --Maximum number of plant 
 CreateConVar("rc_tree_maxb",9, {FCVAR_NOTIFY}) --Maximum number of plant 
 CreateConVar("rc_tree_maxm",14, {FCVAR_NOTIFY}) --Maximum number of plant 

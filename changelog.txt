@@ -6,10 +6,36 @@ Todo :
 
 What is new :
 
-V 2.1 rev A :
+V 2.1 rev B (30/05/2016) :
+change in NPCs behavior :
+- Npcs won't be able to lay egg as long as they are > 1/2 max hunger.
+- Npcs will now start searching for food when they are a bit more hungry ( from 35% to 40% maxhunger )
+
+Balancing :
+- eggs restore more hunger
+- meat restore more hunger
+- minors melon hunger buffs
+
+- Antlion lay less eggs ( in average )
+- Headcrab are much less likely to be black headcrabs ( they can't kill their target )
+- Headcrab are now a little bit likely to be fast headcrabs
+
+- Plants Grow / die quite faster
+- Smaller size plant are buffed ( spawn melon a bit more often and a little bit bigger )
+
+- Baby now start with half of their max hitpoint
+- Baby now start with 25% their hunger.
+
+Fixes :
+- Headcrab will now attack zombie when to hungry
+
+known issue :
+- Human are not fighting back against headcrabs and zombies.
+
+V 2.1 rev A (29/05/2016) :
 change in NPCs behavior :
 - NPCs wont all target the same 'food', which improve the global efficiency of the colonies ( and as well using less time the costy searching for food function )
-intern changes :
+internal changes :
 - New function to init food items
 	rc_api.setFood ( ent , foodType[type : string] )
 - New function to properly remove NPCs 
