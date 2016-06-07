@@ -101,10 +101,10 @@ CreateConVar("rc_speed",1, {FCVAR_NOTIFY})
 
 
 --Meat stuff
-CreateConVar("rc_meat_time",60, {FCVAR_NOTIFY}) -- Time needed for the meat to delete itself.
+CreateConVar("rc_meat_time",40, {FCVAR_NOTIFY}) -- Time needed for the meat to delete itself.
 
 --Watermelon stuff
-CreateConVar("rc_watermelon_time",50, {FCVAR_NOTIFY}) -- Time needed for a watermelon to become a plant.
+CreateConVar("rc_watermelon_time",20, {FCVAR_NOTIFY}) -- Time needed for a watermelon to become a plant.
 CreateConVar("rc_watermelon_max",100, {FCVAR_NOTIFY}) -- Limit of watermelon.
 
 -- Food value
@@ -122,26 +122,26 @@ CreateConVar("rc_food_human_egg" 		,30, {FCVAR_NOTIFY}) -- Food value of human's
 CreateConVar("rc_food_zombie_egg" 		,30, {FCVAR_NOTIFY}) -- Food value of zombie's egg
 
 --Watermelon plant stuff
-CreateConVar("rc_watermelonh_time",8, {FCVAR_NOTIFY}) --Time between each new watermelon
-CreateConVar("rc_watermelonb_time",12, {FCVAR_NOTIFY}) --Time between each new watermelon
-CreateConVar("rc_watermelonm_time",16, {FCVAR_NOTIFY}) --Time between each new watermelon
-CreateConVar("rc_watermelons_time",18, {FCVAR_NOTIFY}) --Time between each new watermelon
+CreateConVar("rc_watermelonh_time",7, {FCVAR_NOTIFY}) --Time between each new watermelon
+CreateConVar("rc_watermelonb_time",9, {FCVAR_NOTIFY}) --Time between each new watermelon
+CreateConVar("rc_watermelonm_time",12, {FCVAR_NOTIFY}) --Time between each new watermelon
+CreateConVar("rc_watermelons_time",15, {FCVAR_NOTIFY}) --Time between each new watermelon
 
-CreateConVar("rc_watermelonh_size",130, {FCVAR_NOTIFY})-- Size of melon in %
+CreateConVar("rc_watermelonh_size",125, {FCVAR_NOTIFY})-- Size of melon in %
 CreateConVar("rc_watermelonb_size",100, {FCVAR_NOTIFY})-- Size of melon in %
-CreateConVar("rc_watermelonm_size",80, {FCVAR_NOTIFY}) -- Size of melon in %
-CreateConVar("rc_watermelons_size",60, {FCVAR_NOTIFY}) -- Size of melon in %
+CreateConVar("rc_watermelonm_size",90, {FCVAR_NOTIFY}) -- Size of melon in %
+CreateConVar("rc_watermelons_size",75, {FCVAR_NOTIFY}) -- Size of melon in %
 
 CreateConVar("rc_watermelonh_life",900, {FCVAR_NOTIFY}) --Time between a tree death
 CreateConVar("rc_watermelonb_life",400, {FCVAR_NOTIFY}) --Time between tree grow
 CreateConVar("rc_watermelonm_life",120, {FCVAR_NOTIFY}) --Time between tree grow
 CreateConVar("rc_watermelons_life",80, {FCVAR_NOTIFY}) --Time between tree grow
-CreateConVar("rc_tree_maxh",2, {FCVAR_NOTIFY}) --Maximum number of plant 
-CreateConVar("rc_tree_maxb",9, {FCVAR_NOTIFY}) --Maximum number of plant 
-CreateConVar("rc_tree_maxm",14, {FCVAR_NOTIFY}) --Maximum number of plant 
-CreateConVar("rc_tree_maxs",29, {FCVAR_NOTIFY}) --Maximum number of plant 
-CreateConVar("rc_watermelonh_distance",1250, {FCVAR_NOTIFY}) --Maximum/Minimum distance watermelons can spawn from the plant
-CreateConVar("rc_watermelonb_distance",500, {FCVAR_NOTIFY}) --Maximum/Minimum distance watermelons can spawn from the plant
+CreateConVar("rc_tree_maxh",3, {FCVAR_NOTIFY}) --Maximum number of plant 
+CreateConVar("rc_tree_maxb",12, {FCVAR_NOTIFY}) --Maximum number of plant 
+CreateConVar("rc_tree_maxm",20, {FCVAR_NOTIFY}) --Maximum number of plant 
+CreateConVar("rc_tree_maxs",35, {FCVAR_NOTIFY}) --Maximum number of plant 
+CreateConVar("rc_watermelonh_distance",1200, {FCVAR_NOTIFY}) --Maximum/Minimum distance watermelons can spawn from the plant
+CreateConVar("rc_watermelonb_distance",600, {FCVAR_NOTIFY}) --Maximum/Minimum distance watermelons can spawn from the plant
 CreateConVar("rc_watermelonm_distance",300, {FCVAR_NOTIFY}) --Maximum/Minimum distance watermelons can spawn from the plant
 CreateConVar("rc_watermelons_distance",150, {FCVAR_NOTIFY}) --Maximum/Minimum distance watermelons can spawn from the plant
 

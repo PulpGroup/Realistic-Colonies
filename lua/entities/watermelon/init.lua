@@ -30,35 +30,10 @@
 		self.age=0
 		rc_api.setFood(self,"plant")
     end
-
-	function ENT:Think()
-		if IsValid(self) then
-			if GetConVarNumber("rc_remove")==1 then 
-				self:Remove()
-			end
-		
-			if self.age > GetConVarNumber("rc_watermelon_time") then
-				local random = math.Round(math.random(0,2))
-				if random == 2 and treesCount() <= GetConVarNumber("rc_tree_maxs") then
-					local melon = ents.Create("watermelon_plant_small")
-					undo.ReplaceEntity(self.Entity,melon)
-					melon:SetPos(self:GetPos())
-					melon:Spawn()
-					melon:SetOwner(self.Owner)
-				end
-				self:Remove()
-			else
-				self.age = self.age + GetConVarNumber("rc_watermelon_time")
-				self:NextThink( CurTime() + GetConVarNumber("rc_watermelon_time")/GetConVarNumber("rc_speed") )
-				return true
-			end
-		end
-	end
 	
-     
-     function ENT:OnTakeDamage(dmg)
+	function ENT:OnTakeDamage(dmg)
 		self:Remove()
-     end
+	end
 	 
 	    
 	/*---------------------------------------------------------
@@ -68,5 +43,30 @@
 
 
 	function ENT:OnRemove()
-	self:Remove()
+		self:Remove()
 	end
+
+	
+	function ENT:Think()
+		if GetConVarNumber("rc_remove")==1 then 
+			self:Remove()
+		end
+		
+		if self.age > GetConVarNumber("rc_watermelon_time") then
+		
+			local random = math.Round(math.random(0,2))
+			if random == 2 and treesCount() <= GetConVarNumber("rc_tree_maxs") then
+				local melon = ents.Create("watermelon_plant_small")
+				undo.ReplaceEntity(self.Entity,melon)
+				melon:SetPos(self:GetPos()-Vector(0,0,7	))
+				melon:Spawn()
+				melon:SetModelScale(GetConVarNumber("rc_watermelonb_size")/100,0);
+				melon:SetOwner(self.Owner)
+			end
+			self:Remove()
+		end
+		
+		self.age = self.age + GetConVarNumber("rc_planttime")*GetConVarNumber("rc_speed")
+		self:NextThink( CurTime() + GetConVarNumber("rc_planttime") )
+		return true
+	end 

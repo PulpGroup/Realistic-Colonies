@@ -6,6 +6,25 @@ Todo :
 
 What is new :
 
+V 2.1 rev C (06/06/2016) :
+(The plant update)
+
+CHANGES
+- Small plants now grow ( and spawn melon relativly to their size )
+- Plants spawn melon more often,
+- Small plants and melons should grow quite more often.
+- Plants now have a random +- 10% melon spawning rate
+- Plants should spawn melon a bit faster on increased rc_speed
+- Watermelon decay way faster ( so that there can't be an area with tons of melon )
+
+FIXES
+- Plant should now properly react to rc_speed changes.
+- Melon should now properly spawn plants on the ground.
+- Small and Medium plant now have a correct growing timer
+- Headcrab and Zombies behavior were incorrect when to hungry (not targeting some type of headcrab/zombie)
+
+
+
 V 2.1 rev B (30/05/2016) :
 change in NPCs behavior :
 - Npcs won't be able to lay egg as long as they are > 1/2 max hunger.

@@ -28,6 +28,7 @@
 		self:SetSolid( SOLID_VPHYSICS ) // Toolbox
 		self:GetPhysicsObject():EnableMotion(false)
 		self:SetNWBool("RC",true)
+		self.mage=GetConVarNumber("rc_watermelonm_life")
 		self.age=0
 		self.nextmelon=GetConVarNumber("rc_watermelonm_time")
     end
@@ -40,7 +41,7 @@
 			self:Remove()
 		end
 		
-		if self.age > GetConVarNumber("rc_watermelonb_life") then
+		if self.age > self.mage then
 			local random = math.Round(math.random(0,2))
 			if random == 2 and treebCount() <= GetConVarNumber("rc_tree_maxb") then
 				local melon = ents.Create("watermelon_plant_big")
@@ -52,7 +53,7 @@
 			self:Remove()
 		end
 		if self.age > self.nextmelon  and watermelonCount() <= GetConVarNumber("rc_watermelon_max") then
-			self.nextmelon = GetConVarNumber("rc_watermelonm_time") + self.age
+			self.nextmelon = self.nextmelon + GetConVarNumber("rc_watermelonm_time")*math.random(90,110)/100
 			local melon = ents.Create("watermelon")
 			local dist = GetConVarNumber("rc_watermelonm_distance")
 			melon:SetPos(self:GetPos()+Vector(math.random(-dist,dist),math.random(-dist,dist),60))
@@ -61,7 +62,7 @@
 			melon:SetModelScale(GetConVarNumber("rc_watermelonm_size")/100,0);
 		end
 		
-		self.age = self.age + 1
+		self.age = self.age + GetConVarNumber("rc_planttime")*GetConVarNumber("rc_speed")
 		self:NextThink( CurTime() + GetConVarNumber("rc_planttime") )
 		return true
 	end 

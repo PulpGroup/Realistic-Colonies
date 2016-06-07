@@ -25,8 +25,10 @@
     function ENT:Initialize()
 		
 		self:SetModel("models/props_foliage/shrub_01a.mdl")
+		self:SetModelScale(0.1,0);
 		self:SetSolid( SOLID_VPHYSICS ) // Toolbox
 		self:SetNWBool("RC",true)
+		self.mage=GetConVarNumber("rc_watermelons_life")
 		self.age=0
 		self.nextmelon=GetConVarNumber("rc_watermelons_time")
 		
@@ -36,13 +38,17 @@
      end
 	 	    
 	function ENT:Think()
+	
+		if self.age < self.mage/2 then
+			self:SetModelScale(0.1 +  1.8*self.age/self.mage,0);
+		end
 		if GetConVarNumber("rc_remove")==1 then 
 			self:Remove()
 		end
 		
-		if self.age > GetConVarNumber("rc_watermelonb_life") then
-			local random = math.Round(math.random(0,3))
-			if random == 3 and treemCount() <= GetConVarNumber("rc_tree_maxm") then
+		if self.age > self.mage then
+			local random = math.Round(math.random(0,2))
+			if random == 2 and treemCount() <= GetConVarNumber("rc_tree_maxm") then
 				local melon = ents.Create("watermelon_plant_medium")
 				undo.ReplaceEntity(self.Entity,melon)
 				melon:SetPos(self:GetPos())
@@ -52,16 +58,16 @@
 			self:Remove()
 		end
 		if self.age > self.nextmelon  and watermelonCount() <= GetConVarNumber("rc_watermelon_max") then
-			self.nextmelon = GetConVarNumber("rc_watermelons_time") + self.age
+			self.nextmelon = self.nextmelon + GetConVarNumber("rc_watermelons_time")*math.random(90,110)/100
 			local melon = ents.Create("watermelon")
 			local dist = GetConVarNumber("rc_watermelons_distance")
 			melon:SetPos(self:GetPos()+Vector(math.random(-dist,dist),math.random(-dist,dist),40))
 			melon:Spawn()
 			melon:SetOwner(self.Owner)
-			melon:SetModelScale(GetConVarNumber("rc_watermelons_size")/100,0);
+			melon:SetModelScale(self:GetModelScale()*GetConVarNumber("rc_watermelons_size")/100,0);
 		end
 		
-		self.age = self.age + 1
+		self.age = self.age + GetConVarNumber("rc_planttime")*GetConVarNumber("rc_speed")
 		self:NextThink( CurTime() + GetConVarNumber("rc_planttime") )
 		return true
 	end 

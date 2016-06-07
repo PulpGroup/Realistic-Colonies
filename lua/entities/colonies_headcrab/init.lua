@@ -117,10 +117,11 @@
 				self.npc:AddRelationship("npc_headcrab D_HT 999")
 				self.npc:AddRelationship("npc_headcrab_black D_HT 999")
 				self.npc:AddRelationship("npc_headcrab_fast D_HT 999")
-				self.npc:AddRelationship("npc_zombie D_LI 999")
+				self.npc:AddRelationship("npc_zombie D_HT 999")
 			else
 				self.npc:AddRelationship("npc_headcrab D_LI 999")
 				self.npc:AddRelationship("npc_headcrab_black D_LI 999")
+				self.npc:AddRelationship("npc_headcrab_fast D_LI 999")
 				self.npc:AddRelationship("npc_zombie D_LI 999")
 			end
 			
