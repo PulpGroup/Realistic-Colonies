@@ -1,5 +1,13 @@
-Realistic Colonies V2.1 is made by : The Blue Surfer @ Fadoli and Wamilou.
-Do not clame this addons as yours.
+Realistic Colonies V2.1 brought to you by The Blue Surfer @ Fadoli and Wamilou.
+Do not claim this addons as yours.
+
+Thanks to :
+- Namelezz and Overv ( initial coding + idea ) 
+- The Blue Surfer (AKA fadoli) and Wamilou ( adding new content / updating / porting to gmod13 ) 
+
+If you want to work on this and make an other version, please contact us.
+You can still do it without telling us, but I would like to know what you are doing, why ...
+
 
 Todo :
 - genetic thing or class thing

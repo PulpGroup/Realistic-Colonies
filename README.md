@@ -21,6 +21,10 @@ You have 2 ways to download this addon :
 3. Now, Garry's mod will download and update our addon for you.
 
 ### From Github ###
-1. First, install TortoiseSVN
-2. Then, do checkout with TortoiseSVN on 'https://github.com/wamilou/Realistic-Colonies/trunk'
-3. Restart your garry's mod to apply change !
+1. Download the files from here
+2. Put them in your garrysmod/addons/
+
+
+## Credits ##
+- Namelezz and Overv ( initial coding + idea ) 
+- The Blue Surfer (AKA fadoli) and Wamilou ( adding new content / updating / porting to gmod13 ) 
