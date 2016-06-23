@@ -1,4 +1,4 @@
-Realistic Colonies V2.1 brought to you by The Blue Surfer @ Fadoli and Wamilou.
+Realistic Colonies V2.2 brought to you by The Blue Surfer @ Fadoli and Wamilou.
 Do not claim this addons as yours.
 
 Thanks to :
@@ -13,6 +13,9 @@ Todo :
 - genetic thing or class thing
 
 What is new :
+
+V 2.2 ( Workshop upload 23/06/16 ) :
+- Pushing the Revs update on the workshop
 
 V 2.1 rev C (06/06/2016) :
 (The plant update)
@@ -41,7 +44,7 @@ change in NPCs behavior :
 Balancing :
 - eggs restore more hunger
 - meat restore more hunger
-- minors melon hunger buffs
+- melon restore a bit more hunger
 
 - Antlion lay less eggs ( in average )
 - Headcrab are much less likely to be black headcrabs ( they can't kill their target )
