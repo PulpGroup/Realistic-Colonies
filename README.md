@@ -19,12 +19,12 @@ You have 2 ways to download this addon :
 1. Go on [Steam Workshop page](http://steamcommunity.com/sharedfiles/filedetails/?id=139477348)
 2. Then press 'Subscribe' button
 3. Now, Garry's mod will download and update our addon for you.
+     
 
 ### From Github ###
-1. Download the files from here
-2. Put them in your garrysmod/addons/
+- Download the files from here
+- Put them in your garrysmod/addons/
 
-
-## Credits ##
-- Namelezz and Overv ( initial coding + idea ) 
-- The Blue Surfer (AKA fadoli) and Wamilou ( adding new content / updating / porting to gmod13 ) 
+# Credits #
+- Namelezz and Overv ( initial coding + idea )
+- The Blue Surfer (AKA fadoli) and Wamilou ( adding new content / updating / porting to gmod13 )

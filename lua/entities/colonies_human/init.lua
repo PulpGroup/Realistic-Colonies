@@ -122,7 +122,7 @@
 
 			if self.age >  GetConVarNumber("rc_human_lifespan") then
 				rc_api.removeNPC(self)
-				if GetConVarNumber("rc_printevents") > 2 then
+				if GetConVarNumber("rc_printevents") >= 2 then
 					PrintMessage(HUD_PRINTTALK,"human "..self.name.." died (age).")
 				end
 			end
@@ -141,7 +141,7 @@
 				if self.hunger >= self.mhunger then
 					self.npc:SetHealth(self.npc:Health()-1*GetConVarNumber("rc_speed")*GetConVarNumber("rc_time"))
 					if(self.npc:Health() <= 0) then
-						if GetConVarNumber("rc_printevents") > 1 then
+						if GetConVarNumber("rc_printevents") >= 1 then
 							PrintMessage(HUD_PRINTTALK,"human "..self.name.." died (starvation).")
 						end
 						local meat = ents.Create("colonies_humanmeat")
