@@ -1,4 +1,4 @@
-Realistic Colonies V2.2.1 brought to you by The Blue Surfer @ Fadoli and Wamilou.
+Realistic Colonies V2.3.0 brought to you by The Blue Surfer @ Fadoli and Wamilou.
 Do not claim this addons as yours.
 
 Thanks to :
@@ -13,6 +13,11 @@ Todo :
 - genetic thing or class thing
 
 What is new :
+
+V 2.3.0 ( Hotfix 29/06 ) :
+CHANGES
+
+FIXES
 
 V 2.2.1 ( Hotfix 29/06 ) :
 - Fixing a bug with rc_printevents, and message displaying

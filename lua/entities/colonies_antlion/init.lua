@@ -1,11 +1,15 @@
 AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 include("shared.lua")
+include("../commons.lua")
 
 function antlionCount()
     local hcs = ents.FindByClass("colonies_antlion")
     return #hcs
 end
+
+local hctypes = {"npc_antlion"}
+registerNpcType("antlion", hctypes)
 
 function ENT:SpawnFunction(ply, tr)
     if antlionCount() < GetConVarNumber("rc_antlion_max") then
@@ -19,9 +23,7 @@ function ENT:SpawnFunction(ply, tr)
 end
 
 function ENT:Initialize()
-
-    local lion = ents.Create("npc_antlion")
-    self.npc = lion
+    self.npc = ents.Create(hctypes[math.random(1, #hctypes)])
     local spawnflags = SF_NPC_ALWAYSTHINK
     self.npc:SetKeyValue("spawnflags", spawnflags)
     self.npc:SetPos(self:GetPos())
@@ -57,19 +59,11 @@ function ENT:Initialize()
         self.npc:AddRelationship("player D_NU 999")
     end
 
-    if GetConVarNumber("rc_spreadthelove") == 1 then
-        self.npc:AddRelationship("npc_antlion D_NU 999")
-        self.npc:AddRelationship("npc_headcrab D_NU 999")
-        self.npc:AddRelationship("npc_headcrab_black D_NU 999")
-        self.npc:AddRelationship("npc_headcrab_fast D_NU 999")
-        self.npc:AddRelationship("npc_zombie D_NU 999")
-        self.npc:AddRelationship("npc_citizen D_NU 999")
-    end
+    makeFriendly(self);
 
     self.npc:SetModelScale(self.scale, 0);
     self.npc:SetHealth(self.maxhp / 2);
     self.npc:SetNWInt("HChealth", self.npc:Health());
-
 end
 
 function ENT:OnTakeDamage(dmg)
@@ -187,6 +181,10 @@ function ENT:Think()
                              (2 * (self.age - GetConVarNumber("rc_antlion_maturetime") * 0.75) /
                                  GetConVarNumber("rc_antlion_maturetime"))
             self.npc:SetModelScale(self.scale, GetConVarNumber("rc_time"));
+
+            if GetConVarNumber("rc_spreadthelove") == 0 then
+                makeFriendly(self);
+            end
         end
 
         self.npc:SetNWInt("HCage", self.age)

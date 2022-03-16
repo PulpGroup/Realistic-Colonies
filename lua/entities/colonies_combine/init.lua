@@ -8,6 +8,7 @@ function combineCount()
 end
 
 local hctypes = {"npc_metropolice"}
+registerNpcType("combine", hctypes)
 
 function ENT:SpawnFunction(ply, tr)
     if combineCount() < GetConVarNumber("rc_human_max") then
@@ -21,9 +22,7 @@ function ENT:SpawnFunction(ply, tr)
 end
 
 function ENT:Initialize()
-
-    local crab = ents.Create(hctypes[math.random(1, #hctypes)])
-    self.npc = crab
+    self.npc = ents.Create(hctypes[math.random(1, #hctypes)])
     local spawnflags = SF_NPC_ALWAYSTHINK
     self.npc:SetKeyValue("spawnflags", spawnflags)
     self.npc:SetPos(self:GetPos())
