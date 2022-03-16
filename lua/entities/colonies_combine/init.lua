@@ -103,7 +103,7 @@ function ENT:Think()
     self.hunger = self.hunger + GetConVarNumber("rc_human_hunger") * GetConVarNumber("rc_time") *
                       GetConVarNumber("rc_speed")
 
-    if (IsValid(self.npc)) then
+    if (IsValid(self.npc) ~= true) then
         local meat = ents.Create("colonies_humanmeat")
         meat:SetPos(self:GetPos() + Vector(0, 0, 10010))
         meat:SetModelScale(self.scale, 0);
