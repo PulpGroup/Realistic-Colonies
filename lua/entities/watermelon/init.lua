@@ -56,7 +56,6 @@ function ENT:Think()
             undo.ReplaceEntity(self.Entity, melon)
             melon:SetPos(self:GetPos() - Vector(0, 0, 7))
             melon:Spawn()
-            melon:SetModelScale(GetConVarNumber("rc_watermelonb_size") / 100, 0);
             melon:SetOwner(self.Owner)
         end
         self:Remove()

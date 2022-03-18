@@ -24,13 +24,12 @@ end
 function ENT:Initialize()
 
     self:SetModel("models/props_foliage/shrub_01a.mdl")
-    self:SetModelScale(0.1, 0);
     self:SetSolid(SOLID_VPHYSICS)
     self:SetNWBool("RC", true)
     self.mage = GetConVarNumber("rc_watermelons_life")
     self.age = 0
     self.nextmelon = GetConVarNumber("rc_watermelons_time")
-
+    self:SetModelScale(0.2, 0);
 end
 
 function ENT:OnTakeDamage(dmg)
@@ -39,7 +38,7 @@ end
 function ENT:Think()
 
     if self.age < self.mage / 2 then
-        self:SetModelScale(0.1 + 1.8 * self.age / self.mage, 0);
+        self:SetModelScale(0.2 + 1.6 * self.age / self.mage, GetConVarNumber("rc_planttime"));
     end
     if GetConVarNumber("rc_remove") == 1 then
         self:Remove()
