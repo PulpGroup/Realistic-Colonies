@@ -44,7 +44,7 @@ function ENT:Initialize()
 
     self.maxhp = 50
     self.hpregen = 1
-    self.scale = 0.1
+    self.scale = 0.2
 
     self.npc:SetNWString("HCname", self.name)
     self.npc:SetNWBool("HC", true)
@@ -191,7 +191,7 @@ function ENT:Think()
         end
 
         if self.age <= GetConVarNumber("rc_zombie_maturetime") * 0.25 then
-            self.scale = 0.1 + (2 * self.age / GetConVarNumber("rc_zombie_maturetime")) * (0.9)
+            self.scale = 0.2 + (2 * self.age / GetConVarNumber("rc_zombie_maturetime")) * (0.8)
             self.npc:SetModelScale(self.scale, GetConVarNumber("rc_time"));
         elseif self.age <= GetConVarNumber("rc_zombie_maturetime") * 0.75 then
 
