@@ -71,7 +71,7 @@ CreateConVar("rc_tree_maxh", 3, {FCVAR_NOTIFY}) -- Maximum number of plant
 CreateConVar("rc_tree_maxb", 12, {FCVAR_NOTIFY}) -- Maximum number of plant 
 CreateConVar("rc_tree_maxm", 20, {FCVAR_NOTIFY}) -- Maximum number of plant 
 CreateConVar("rc_tree_maxs", 35, {FCVAR_NOTIFY}) -- Maximum number of plant 
-CreateConVar("rc_watermelonh_distance", 1200, {FCVAR_NOTIFY}) -- Maximum/Minimum distance watermelons can spawn from the plant
+CreateConVar("rc_watermelonh_distance", 900, {FCVAR_NOTIFY}) -- Maximum/Minimum distance watermelons can spawn from the plant
 CreateConVar("rc_watermelonb_distance", 600, {FCVAR_NOTIFY}) -- Maximum/Minimum distance watermelons can spawn from the plant
 CreateConVar("rc_watermelonm_distance", 300, {FCVAR_NOTIFY}) -- Maximum/Minimum distance watermelons can spawn from the plant
 CreateConVar("rc_watermelons_distance", 150, {FCVAR_NOTIFY}) -- Maximum/Minimum distance watermelons can spawn from the plant
