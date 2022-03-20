@@ -4,17 +4,21 @@
 
 - genetic thing or class thing
 
-## 2.3.0 ( Hotfix 29/06 )
+## 2.3.0 ( xx/03/2022 )
 
 ### Changed
 
-- [Plant] Implemented model and
+- Visual changes
+  - [Plants] Implemented Model variation
+  - [Plants] Implemented Skin variation (for models where they are available)
+  - [Plants] Added variation to plant sizes (have no other effects then model scale)
+- [NPCs/Plants] Minimal size is now 0.2 instead of 0.1
 
 ### Fixed
 
-- [Plant]
+- [Meat] Fixed an issue related to coloration of some meats causing LUA errors (most likely API changes in GMOD)
 
-## 2.2.1 ( Hotfix 29/06 )
+## 2.2.1 ( Hotfix 29/06/16 )
 
 ### Fixed
 
