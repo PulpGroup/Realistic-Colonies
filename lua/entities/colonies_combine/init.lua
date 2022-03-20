@@ -107,7 +107,7 @@ function ENT:Think()
         meat:SetPos(self:GetPos() + Vector(0, 0, 10010))
         meat:SetModelScale(self.scale, 0);
         meat:Spawn()
-        self:Remove()
+        rc_api.removeNPC(self);
     else
         if GetConVarNumber("rc_remove") == 1 then
             self:Remove()
@@ -117,7 +117,7 @@ function ENT:Think()
         self:SetPos(self.npc:GetPos() - Vector(0, 0, 10000))
 
         if self.age > GetConVarNumber("rc_human_lifespan") then
-            self:Remove()
+            rc_api.removeNPC(self);
             if GetConVarNumber("rc_printevents") == 1 then
                 PrintMessage(HUD_PRINTTALK, "combine " .. self.name .. " died (age).")
             end
@@ -141,7 +141,7 @@ function ENT:Think()
                     meat:SetPos(self:GetPos() + Vector(0, 0, 10010))
                     meat:SetModelScale(self.scale, 0);
                     meat:Spawn()
-                    self:Remove()
+                    rc_api.removeNPC(self);
                 end
             end
 
