@@ -16,6 +16,7 @@
 
 ### Fixed
 
+- [Plants] Small_plants growing animation is now smoother
 - [Meat] Fixed an issue related to coloration of some meats causing LUA errors (most likely API changes in GMOD)
 
 ## 2.2.1 ( Hotfix 29/06/16 )
