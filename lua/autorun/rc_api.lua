@@ -54,21 +54,21 @@ end
 -- Prend la nourriture la plus proche
 function rc_api.getNearestFood(ent)
     local pos = ent:GetPos();
-    local objets = ents.FindInSphere(pos, GetConVarNumber("rc_searchrad"));
     local dist = GetConVarNumber("rc_searchrad");
+    local objectsList = ents.FindInSphere(pos, dist);
     local eating = nil;
 
-    for k, v in pairs(objets) do
-        if (rc_api.isValidFood(ent, v)) then
-            if (v:GetPos():Distance(pos) < dist and v:GetNWBool("Targetable", false)) then
-                if (rc_api.isValidFood(ent, eating)) then
-                    eating:SetNWBool("Targetable", true);
-                end
-                v:SetNWBool("Targetable", false);
-                eating = v;
-                dist = v:GetPos():Distance(pos);
+    for _, newFood in pairs(objectsList) do
+        if (rc_api.isValidFood(ent, newFood) and newFood:GetNWBool("Targetable", false)) then
+            local newFoodDist = newFood:GetPos():Distance(pos)
+            if (newFoodDist < dist) then
+                eating = newFood;
+                dist = newFoodDist;
             end
         end
+    end
+    if (rc_api.isValidFood(ent, eating)) then
+        eating:SetNWBool("Targetable", false);
     end
     return eating;
 end
