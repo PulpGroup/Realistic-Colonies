@@ -9,7 +9,8 @@ end
 
 local hctypes = {"npc_headcrab", "npc_headcrab", "npc_headcrab", "npc_headcrab", "npc_headcrab_black",
                  "npc_headcrab_black", "npc_headcrab_fast"}
-registerNpcType("headcrab", hctypes)
+local currentTeam = "headcrab"
+registerNpcType(currentTeam, hctypes)
 
 function ENT:SpawnFunction(ply, tr)
     if headcrabCount() < GetConVarNumber("rc_headcrab_max") then
@@ -58,13 +59,10 @@ function ENT:Initialize()
         self.npc:AddRelationship("player D_NU 999")
     end
 
-    if GetConVarNumber("rc_spreadthelove") == 1 then
-        self.npc:AddRelationship("npc_antlion D_NU 999")
-        self.npc:AddRelationship("npc_headcrab D_NU 999")
-        self.npc:AddRelationship("npc_headcrab_black D_NU 999")
-        self.npc:AddRelationship("npc_headcrab_fast D_NU 999")
-        self.npc:AddRelationship("npc_zombie D_NU 999")
-        self.npc:AddRelationship("npc_citizen D_NU 999")
+    if GetConVarNumber("rc_spreadthelove") == 0 then
+        makeFear(self.npc, currentTeam);
+    else
+        makeFriendly(self.npc,currentTeam)
     end
 
     self.npc:SetModelScale(self.scale, 0);
@@ -194,6 +192,10 @@ function ENT:Think()
                              (2 * (self.age - GetConVarNumber("rc_headcrab_maturetime") * 0.75) /
                                  GetConVarNumber("rc_headcrab_maturetime"))
             self.npc:SetModelScale(self.scale, GetConVarNumber("rc_time"));
+
+            if GetConVarNumber("rc_spreadthelove") == 0 then
+                makeunFriendly(self.npc, currentTeam);
+            end
         end
 
         self.npc:SetNWInt("HCage", self.age)

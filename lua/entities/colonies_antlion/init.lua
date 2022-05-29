@@ -1,7 +1,6 @@
 AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 include("shared.lua")
-include("../commons.lua")
 
 function antlionCount()
     local hcs = ents.FindByClass("colonies_antlion")
@@ -9,7 +8,8 @@ function antlionCount()
 end
 
 local hctypes = {"npc_antlion"}
-registerNpcType("antlion", hctypes)
+local currentTeam = "antlion"
+registerNpcType(currentTeam, hctypes)
 
 function ENT:SpawnFunction(ply, tr)
     if antlionCount() < GetConVarNumber("rc_antlion_max") then
@@ -49,7 +49,7 @@ function ENT:Initialize()
     self.scale = 0.2
 
     self.npc:SetNWString("HCname", self.name)
-    self.npc:SetNWString("rc_class", "antlion")
+    self.npc:SetNWString("rc_class", currentTeam)
     self.npc:SetNWBool("HC", true)
     self.npc:SetNWBool("RC", true)
     self.npc:SetNWBool("isSelected", false)
@@ -59,7 +59,12 @@ function ENT:Initialize()
         self.npc:AddRelationship("player D_NU 999")
     end
 
-    makeFriendly(self);
+
+    if GetConVarNumber("rc_spreadthelove") == 0 then
+        makeFear(self.npc, currentTeam);
+    else
+        makeFriendly(self.npc,currentTeam)
+    end
 
     self.npc:SetModelScale(self.scale, 0);
     self.npc:SetHealth(self.maxhp / 2);
@@ -183,7 +188,7 @@ function ENT:Think()
             self.npc:SetModelScale(self.scale, GetConVarNumber("rc_time"));
 
             if GetConVarNumber("rc_spreadthelove") == 0 then
-                makeFriendly(self);
+                makeunFriendly(self.npc, currentTeam);
             end
         end
 

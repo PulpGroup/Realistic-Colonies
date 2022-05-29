@@ -4,15 +4,16 @@
 
 - genetic thing or class thing
 
-## 2.3.0 ( xx/03/2022 )
+## 2.3.0 ( 29/05/2022 )
 
 ### Changed
 
 - Visual changes
   - [Plants] Implemented Model variation
   - [Plants] Implemented Skin variation (for models where they are available)
-  - [Plants] Added variation to plant sizes (have no other effects then model scale)
+  - [Plants] Added variation to plant sizes (have no other effects than model scale)
 - [NPCs/Plants] Minimal size is now 0.2 instead of 0.1
+- [NPCs] Non mature NPCs will now fear others npcs groups
 
 ### Fixed
 
