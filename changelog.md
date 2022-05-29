@@ -1,30 +1,38 @@
-Realistic Colonies V2.2.1 brought to you by The Blue Surfer @ Fadoli and Wamilou.
-Do not claim this addons as yours.
+# Changelog
 
-Thanks to :
-- Namelezz and Overv ( initial coding + idea ) 
-- The Blue Surfer (AKA fadoli) and Wamilou ( adding new content / updating / porting to gmod13 ) 
+## Todo
 
-If you want to work on this and make an other version, please contact us.
-You can still do it without telling us, but I would like to know what you are doing, why ...
-
-
-Todo :
 - genetic thing or class thing
 
-What is new :
+## 2.3.0 ( 29/05/2022 )
 
-V 2.2.1 ( Hotfix 29/06 ) :
+### Changed
+
+- Visual changes
+  - [Plants] Implemented Model variation
+  - [Plants] Implemented Skin variation (for models where they are available)
+  - [Plants] Added variation to plant sizes (have no other effects than model scale)
+- [NPCs/Plants] Minimal size is now 0.2 instead of 0.1
+- [NPCs] Non mature NPCs will now fear others npcs groups
+
+### Fixed
+
+- [Plants] Small_plants growing animation is now smoother
+- [Meat] Fixed an issue related to coloration of some meats causing LUA errors (most likely API changes in GMOD)
+
+## 2.2.1 ( Hotfix 29/06/16 )
+
+### Fixed
+
 - Fixing a bug with rc_printevents, and message displaying
 Thanks to "Combine DvL ID:3"
 
-V 2.2 ( Workshop upload 23/06/16 ) :
-- Pushing the Revs update on the workshop
+## 2.2 ( Workshop upload 23/06/16 ) : Pushing the Revs update on the workshop
 
-V 2.1 rev C (06/06/2016) :
-(The plant update)
+## 2.1 rev C ( 06/06/16 ) : The plant update
 
-CHANGES
+### Changed
+
 - Small plants now grow ( and spawn melon relativly to their size )
 - Plants spawn melon more often,
 - Small plants and melons should grow quite more often.
@@ -32,20 +40,22 @@ CHANGES
 - Plants should spawn melon a bit faster on increased rc_speed
 - Watermelon decay way faster ( so that there can't be an area with tons of melon )
 
-FIXES
+### Fixed
+
 - Plant should now properly react to rc_speed changes.
 - Melon should now properly spawn plants on the ground.
 - Small and Medium plant now have a correct growing timer
 - Headcrab and Zombies behavior were incorrect when to hungry (not targeting some type of headcrab/zombie)
 
+## 2.1 rev B (30/05/2016)
 
+### Changed
 
-V 2.1 rev B (30/05/2016) :
-change in NPCs behavior :
 - Npcs won't be able to lay egg as long as they are > 1/2 max hunger.
 - Npcs will now start searching for food when they are a bit more hungry ( from 35% to 40% maxhunger )
 
-Balancing :
+### Balancing
+
 - eggs restore more hunger
 - meat restore more hunger
 - minors melon hunger buffs
@@ -60,45 +70,51 @@ Balancing :
 - Baby now start with half of their max hitpoint
 - Baby now start with 25% their hunger.
 
-Fixes :
+### Fixed
+
 - Headcrab will now attack zombie when to hungry
 
-known issue :
+### Known bug
+
 - Human are not fighting back against headcrabs and zombies.
 
-V 2.1 rev A (29/05/2016) :
-change in NPCs behavior :
+## 2.1 rev A (29/05/2016)
+
+### Changed
+
 - NPCs wont all target the same 'food', which improve the global efficiency of the colonies ( and as well using less time the costy searching for food function )
-internal changes :
-- New function to init food items
-	rc_api.setFood ( ent , foodType[type : string] )
-- New function to properly remove NPCs 
-	rc_api.removeNPC ( ent ) 
 
-V 2.1 :
+### Internal
 
-GAMEPLAY changes :
-- Fixes :
-* Npcs are not laying eggs when they are to hungry ( this really allowed colony to survive without having to eat )
+- New function to init food items : rc_api.setFood ( ent , foodType[type : string] )
+- New function to properly remove NPCs : rc_api.removeNPC ( ent )
 
-FIXES :
-- Fixed some misstakes in convar uses related to eggs
-- Fixed some terrible misstakes in counting colonies member ( human was sometimes counting headcrab one instead ... )
+## 2.1
 
-OTHER :
+### Changed
+
 - Name in spawn tab changed
 - Gamemode removed
 
-V 2.0 :
+### Fixed
+
+- Npcs are not laying eggs when they are to hungry ( this really allowed colony to survive without having to eat )
+- Fixed some mistakes in convar uses related to eggs
+- Fixed some terrible mistakes in counting colonies member ( human was sometimes counting headcrab one instead ... )
+
+## 2.0
+
 - SPAWN ICONS ... yeah finally ... ( it took me a long time to make them =( )
 Note : not all of them are included nor really good, but that's better than nothing
 
 Plants :
+
 - Changed some convar related things.
 - Small plants spawn small melons, Big plants spawn big melon.
 - Melon are spawn at higher places to prevent them geting stuck in the map ( you should not let tree grows in corner, they need a lot of space ! )
 
 NPCS :
+
 - Changed a lot of convar value to balance things
 - Added a young state, npcs grow fast then stop ( young ) then grow again.
 - NPCS are not eating their own meat, they won't target it, but they still become crazy if not enough food is present ( and very hungry , this does not affect human )
@@ -106,23 +122,26 @@ NPCS :
 - Zombie drops 1 human and 1 headcrabs meat on death. (non natural death)
 -Human now have crowbar !
 
-Note : 
+Note :
 Zombie are considered as headcrab, they can eat human meat but not headcrab one.
 Zombie eggs are considered as human, they can be eat by other zombies and headcrab but not by human.
 
 Things you will never notice :
+
 - Changed a lot of internal code so the entities' script are much much smaller
 - Improved the RC API.
 
-V 2.0 pre release 5 :
+## 2.0 pre release 5
+
 (added) Torso zombies.
 
-(fixes) Human death message are not showing as headcrab's ones.
-(fixes) Headcrab are now attacking black headcrab when to hungry.
+(Fix) Human death message are not showing as headcrab's ones.
+(Fix) Headcrab are now attacking black headcrab when to hungry.
 
-(changes) New addons format, so I can finally upload it to workshop ;).
+(Change) New addons format, so I can finally upload it to workshop ;).
 
-V 2.0 pre release 4 :
+## 2.0 pre release 4
+
 - New trees stuff :
 -- Randoming wich tree have to grow up
 -- Increased melon spawning zone.
@@ -136,9 +155,8 @@ V 2.0 pre release 4 :
 - Npc can't lay egg when they are starving.
 - some Balance
 
+## 2.0 pre release 3
 
-
-V 2.0 pre release 3 :
 - The entities tab is now 'Realistic_Colonies' instead of 'Real_Colonies'.
 
 - Adding human.
@@ -161,12 +179,12 @@ V 2.0 pre release 3 :
 - Npcs may now eat others npc's egg.
 
 Code side :
+
 - Meat now have correct name.
 - Plant now have correct name
 
+## 2.0 pre release 2
 
-
-V 2.0 pre release 2 :
 - melon are not colony killer :).
 - information writen over npc head are now related to their scale.
 - fixed weapon to controll npc.
@@ -175,7 +193,8 @@ V 2.0 pre release 2 :
 - the resize bug is kinda fixed, since it is smoother.
 - commented the old thing so it does not any error anymore.
 
-V 2.0 pre release :
+## 2.0 pre release
+
 - Adding growing effect of npc.
 - Fixed headcrab having different Hp depanding of their model.
 - Removed pink color of young npc.
