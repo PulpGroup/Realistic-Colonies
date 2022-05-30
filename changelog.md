@@ -4,6 +4,12 @@
 
 - genetic thing or class thing
 
+## 2.3.1 ( 31/05/2022 )
+
+### Fixed
+
+- [Plants] Huge plant model are now properly working (sorry)
+
 ## 2.3.0 ( 29/05/2022 )
 
 ### Changed
