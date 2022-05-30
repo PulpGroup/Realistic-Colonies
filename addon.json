@@ -1,15 +1,18 @@
 {
-	"title"		:	"Realistic Colonies",
-	"type"		:	"npc",
-	"tags"		:	[ "fun", "realism" ],
-	"ignore"	:
-	[
-		"*.psd",
-		"*.vcproj",
-		"*.svn*",
-		"*.txt",
-		"*.md",
-		"*.git*",
-		"*git*"
-	]
+    "title": "Realistic Colonies",
+    "type": "npc",
+    "tags": [
+        "fun",
+        "realism"
+    ],
+    "ignore": [
+        "*.psd",
+        "*.vcproj",
+        "*.svn*",
+        "*.txt",
+        "*.md",
+        "*.git*",
+        ".git*",
+        "*git*"
+    ]
 }

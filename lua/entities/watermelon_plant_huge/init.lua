@@ -16,7 +16,7 @@ function ENT:SpawnFunction(ply, tr)
     return ent
 end
 
-local models = {{"models/gm_forest/tree_orientalspruce1.mdl", 0.7}, {"models/gm_forest/tree_oak1.mdl", 0.8}};
+local models = {{"models/props_foliage/tree_poplar_01.mdl", 1}, {"models/props_foliage/oak_tree01.mdl", 0.9}};
 local scaleRandomness = 20
 
 function ENT:Initialize()
@@ -24,6 +24,7 @@ function ENT:Initialize()
     self:SetModel(models[current][1])
     self.scale = models[current][2] * (math.random(100 - scaleRandomness, 100 + scaleRandomness) / 100)
     self:SetModelScale(self.scale, 0)
+    self:SetSkin(math.random(0, 1))
     self:SetAngles(Angle(0, math.random(0, 360), 0))
     self:PhysicsInit(SOLID_VPHYSICS)
     self:SetSolid(SOLID_VPHYSICS)
